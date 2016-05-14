@@ -1,0 +1,5 @@
+array string 40 text;
+
+text[0] = "412a523";
+text[1] = "5152522";
+text[2] = "-123456";
