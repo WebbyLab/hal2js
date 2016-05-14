@@ -123,8 +123,21 @@ IdentifierName "identifier"
 
 Statement
   = VariableStatement
+  / Block
+  / IfStatement
   / ExpressionStatement
   / ReturnStatement
+
+Block
+    = "begin" __ body:(StatementList __)? "end" {
+        return {
+            type: "BlockStatement",
+            body: optionalList(extractOptional(body, 0))
+        };
+    }
+
+StatementList
+    = head:Statement tail:(__ Statement)* { return buildList(head, tail, 1); }
 
 VariableStatement
     = TypeDefinition __ declarations:VariableDeclarationList EOS {
@@ -222,21 +235,44 @@ ArgumentList
     }
 
 ExpressionStatement
-  =expression:Expression EOS {
-      return {
-        type:       "ExpressionStatement",
-        expression: expression
-      };
+    =   expression:Expression EOS {
+        return {
+            type:       "ExpressionStatement",
+            expression: expression
+        };
     }
 
 Expression
-  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
-      return tail.length > 0
-        ? { type: "SequenceExpression", expressions: buildList(head, tail, 3) }
+    = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+        return tail.length > 0
+            ? { type: "SequenceExpression", expressions: buildList(head, tail, 3) }
         : head;
     }
 
+IfStatement
+    = IfToken __ "(" __ test:Expression __ ")" __ "then" __
+        consequent:Statement __
+        ElseToken __
+        alternate:Statement {
+            return {
+                type:       "IfStatement",
+                test:       test,
+                consequent: consequent,
+                alternate:  alternate
+            };
+        }
+    / IfToken __ "(" __ test:Expression __ ")" __
+        consequent:Statement {
+            return {
+                type:       "IfStatement",
+                test:       test,
+                consequent: consequent,
+                alternate:  null
+            };
+        }
+
 AssignmentExpression
+<<<<<<< HEAD
   = left:LeftHandSideExpression  __
     "=" !"=" __
     right:AssignmentExpression
@@ -247,7 +283,7 @@ AssignmentExpression
         left:     left,
         right:    right
       };
-    } 
+    }
 
 ReturnStatement
     = ReturnToken EOS {
