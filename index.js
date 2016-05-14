@@ -4,7 +4,7 @@ const babylon = require('babylon');
 const fs = require('fs');
 const ast = require('./transforms/concat.hal.ast.json');
 
-function loopAST(ast) {
+function replaceNode(ast) {
 
     Object.keys(ast).forEach(key => {
         if (ast[key].type === 'BinaryExpression') {
@@ -30,12 +30,12 @@ function loopAST(ast) {
                  };
             }
         } else if (typeof ast[key].expression === 'object') {
-            loopAST(ast[key].expression);
+            replaceNode(ast[key].expression);
         }
     });
 }
 
-loopAST(ast.program.body);
+replaceNode(ast.program.body);
 const res = babel.transformFromAst(ast);
 
 console.dir(res.code);
