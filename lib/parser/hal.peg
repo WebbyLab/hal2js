@@ -182,7 +182,7 @@ CallExpression
             computed: true
           };
         }
-      / __ "." __ property:IdentifierName { 
+      / __ "." __ property:IdentifierName {
           return {
             type:     "MemberExpression",
             property: property,
@@ -204,7 +204,7 @@ PrimaryExpression
 
 MemberExpression
   = head:(
-        PrimaryExpression 
+        PrimaryExpression
     )
     tail:(
         __ "[" __ property:Expression __ "]" {
@@ -272,7 +272,6 @@ IfStatement
         }
 
 AssignmentExpression
-<<<<<<< HEAD
   = left:LeftHandSideExpression  __
     "=" !"=" __
     right:AssignmentExpression
