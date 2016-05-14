@@ -24,8 +24,8 @@ Start
 /* ----- Lexical grammar ----- */
 
 TypeDefinition
-    = "string"
-    / "array"
+    = "string" _ [0-9]*
+    / "array" _ [0-9]*
     / "integer"
     / "boolean"
     / "longint"
