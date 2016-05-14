@@ -1,49 +1,3 @@
-{
-    function extractOptional(optional, index) {
-        return optional ? optional[index] : null;
-    }
-
-    function extractList(list, index) {
-        var result = new Array(list.length), i;
-
-        for (i = 0; i < list.length; i++) {
-           result[i] = list[i][index];
-        }
-
-        return result;
-    }
-
-    function buildList(head, tail, index) {
-        return [head].concat(extractList(tail, index));
-    }
-
-    function optionalList(value) {
-        return value !== null ? value : [];
-    }
-
-      function buildTree(head, tail, builder) {
-        var result = head, i;
-
-        for (i = 0; i < tail.length; i++) {
-          result = builder(result, tail[i]);
-        }
-
-        return result;
-      }
-
-      function buildBinaryExpression(head, tail) {
-        return buildTree(head, tail, function(result, element) {
-          return {
-            type:     "BinaryExpression",
-            operator: element[1],
-            left:     result,
-            right:    element[3]
-          };
-        });
-      }
-
-}
-
 Start
     = __ program:Program __ { return program; }
 
@@ -126,7 +80,7 @@ Literal
 StringLiteral "string"
   = '"' chars:DoubleStringCharacter* '"' {
       return { type: "StringLiteral", value: chars.join("") };
-    } 
+    }
 
 DoubleStringCharacter
   = !('"' / "\\" / LineTerminator) SourceCharacter { return text(); }
@@ -139,7 +93,7 @@ LineContinuation
 
 EscapeSequence
   = CharacterEscapeSequence
-  / "0" !DecimalDigit { return "\0"; } 
+  / "0" !DecimalDigit { return "\0"; }
 
 CharacterEscapeSequence
   = SingleEscapeCharacter
@@ -165,7 +119,7 @@ EscapeCharacter
   / "x"
   / "u"
 
-NumericLiteral 
+NumericLiteral
     = literal: DecimalLiteral !(IdentifierStart / DecimalDigit) {
       return literal;
     }
@@ -256,7 +210,7 @@ VariableDeclaration
             id:   id
         };
     }
- 
+
 CallExpression
   = head:(
       callee: MemberExpression  __ args:Arguments {
@@ -362,7 +316,7 @@ IfStatement
                 alternate:  null
             };
         }
- 
+
 UnaryExpression
   = PostfixExpression
   / operator:UnaryOperator __ argument:UnaryExpression {
@@ -476,7 +430,7 @@ LogicalORExpression
 AssignmentExpression
   = left:Identifier  __
     "=" !"="  __
-    right: Literal 
+    right: Literal
     {
       return {
         type:     "AssignmentExpression",
