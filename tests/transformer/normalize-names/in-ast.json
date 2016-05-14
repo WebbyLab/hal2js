@@ -1,0 +1,21 @@
+{
+    "type": "File",
+    "program": {
+        "type": "Program",
+        "sourceType": "script",
+        "body": [
+            {
+                "type": "ExpressionStatement",
+                "expression": {
+                    "type": "CallExpression",
+                    "callee": {
+                        "type": "Identifier",
+                        "name": "Dateinrange"
+                    },
+                    "arguments": []
+                }
+            }
+        ],
+        "directives": []
+    }
+}
