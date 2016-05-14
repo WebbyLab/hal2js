@@ -120,7 +120,7 @@ Literal
 
 StringLiteral "string"
   = '"' chars:DoubleStringCharacter* '"' {
-      return { type: "Literal", value: chars.join("") };
+      return { type: "StringLiteral", value: chars.join("") };
     } 
 
 DoubleStringCharacter
@@ -167,13 +167,13 @@ NumericLiteral
 
 DecimalLiteral
   = DecimalIntegerLiteral "." DecimalDigit* ExponentPart? {
-      return { type: "Literal", value: parseFloat(text()) };
+      return { type: "NumericLiteral", value: parseFloat(text()) };
     }
   / "." DecimalDigit+ ExponentPart? {
-      return { type: "Literal", value: parseFloat(text()) };
+      return { type: "NumericLiteral", value: parseFloat(text()) };
     }
   / DecimalIntegerLiteral ExponentPart? {
-      return { type: "Literal", value: parseFloat(text()) };
+      return { type: "NumericLiteral", value: parseFloat(text()) };
     }
 
 DecimalIntegerLiteral
@@ -195,12 +195,9 @@ ExponentIndicator
 SignedInteger
   = [+-]? DecimalDigit+
 
-
-
-
 BooleanLiteral
-  = TrueToken  { return { type: "Literal", value: true  }; }
-  / FalseToken { return { type: "Literal", value: false }; }
+  = TrueToken  { return { type: "BooleanLiteral", value: true  }; }
+  / FalseToken { return { type: "BooleanLiteral", value: false }; }
 
 Identifier
     = !ReservedWord name:IdentifierName { return name; }
