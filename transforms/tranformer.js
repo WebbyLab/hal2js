@@ -22,7 +22,8 @@ function visitOne(ast, visitor) {
     });
 }
 
-visitAll(ast, visitors);
-const res = babel.transformFromAst(ast);
-
-console.dir(res.code);
+exports.transform = function(ast) {
+    const astCopy = JSON.parse( JSON.stringify(ast) );
+    visitAll(astCopy, visitors);
+    return astCopy;
+};

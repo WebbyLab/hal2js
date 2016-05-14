@@ -24,13 +24,16 @@ Start
 /* ----- Lexical grammar ----- */
 
 TypeDefinition
-    = "string"
-    / "array"
+    = "string" _ [0-9]*
+    / "array" _ [0-9]*
     / "integer"
     / "boolean"
     / "longint"
     / "val"
     / "date"
+
+SourceCharacter
+    = .
 
 ReservedWord "reserved word"
     = "ololo"
@@ -60,8 +63,7 @@ EOS
     / _ LineTerminatorSequence
     / __ EOF
 
-_
-    = (WhiteSpace)*
+
 
 LineTerminatorSequence "end of line"
     = "\n"
@@ -71,8 +73,11 @@ LineTerminatorSequence "end of line"
 EOF
     = !.
 
+_
+    = (WhiteSpace)*
+
 __
-    = WhiteSpace*
+    = (WhiteSpace / LineTerminatorSequence)*
 
 WhiteSpace
     = " "
@@ -83,15 +88,37 @@ Statement
   = VariableStatement
 
 VariableStatement
-    = TypeDefinition __ Identifier EOS
+    = TypeDefinition __ declarations:VariableDeclarationList EOS {
+        return {
+            type:         "VariableDeclaration",
+            declarations: declarations,
+            kind: "let"
+        };
+    }
+
+VariableDeclarationList
+    = head:VariableDeclaration tail:(__ "," __ VariableDeclaration)* {
+        return buildList(head, tail, 3);
+    }
+
+VariableDeclaration
+    = id:Identifier {
+        return {
+            type: "VariableDeclarator",
+            id:   id
+        };
+    }
 
 /* ----- Functions and Programs ----- */
 
 Program
     = body:SourceElements? {
         return {
-            type: "Program",
-            body: optionalList(body)
+            type: "File",
+            program: {
+                type: "Program",
+                body: optionalList(body)
+            }
         };
     }
 
