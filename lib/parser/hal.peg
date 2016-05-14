@@ -134,7 +134,7 @@ ReturnStatement
 FunctionDeclaration
   = FunctionToken __ TypeDefinition __ id:Identifier __
     "(" __ params:(FormalParameterList __)? ")" __
-    "begin" __ body:FunctionBody __ "end"
+    "begin" __ body:FunctionBody __ "end" __ EOS
     {
       return {
         type:   "FunctionDeclaration",
