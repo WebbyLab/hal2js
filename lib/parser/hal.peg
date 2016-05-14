@@ -1,4 +1,8 @@
 {
+    function extractOptional(optional, index) {
+        return optional ? optional[index] : null;
+    }
+
     function extractList(list, index) {
         var result = new Array(list.length), i;
 
@@ -23,6 +27,15 @@ Start
 
 /* ----- Lexical grammar ----- */
 
+/* Tokens */
+
+ElseToken       = "else"       !IdentifierPart
+FalseToken      = "false"      !IdentifierPart
+ForToken        = "for"        !IdentifierPart
+FunctionToken   = "function"   !IdentifierPart
+IfToken         = "if"         !IdentifierPart
+ReturnToken     = "return"     !IdentifierPart
+
 TypeDefinition
     = "string" _ [0-9]*
     / "array" _ [0-9]*
@@ -37,17 +50,6 @@ SourceCharacter
 
 ReservedWord "reserved word"
     = "ololo"
-
-Identifier
-    = !ReservedWord name:IdentifierName { return name; }
-
-IdentifierName "identifier"
-    = head:IdentifierStart tail:IdentifierPart* {
-        return {
-          type: "Identifier",
-          name: head + tail.join("")
-        };
-      }
 
 IdentifierStart
     = [a-zA-Z]
@@ -82,10 +84,23 @@ __
 WhiteSpace
     = " "
 
+
+Identifier
+    = !ReservedWord name:IdentifierName { return name; }
+
+IdentifierName "identifier"
+    = head:IdentifierStart tail:IdentifierPart* {
+        return {
+          type: "Identifier",
+          name: head + tail.join("")
+        };
+      }
+
 /* ----- Statements ----- */
 
 Statement
   = VariableStatement
+  / ReturnStatement
 
 VariableStatement
     = TypeDefinition __ declarations:VariableDeclarationList EOS {
@@ -109,7 +124,38 @@ VariableDeclaration
         };
     }
 
+ReturnStatement
+    = ReturnToken EOS {
+        return { type: "ReturnStatement", argument: null };
+    }
+
 /* ----- Functions and Programs ----- */
+
+FunctionDeclaration
+  = FunctionToken __ TypeDefinition __ id:Identifier __
+    "(" __ params:(FormalParameterList __)? ")" __
+    "begin" __ body:FunctionBody __ "end" __ EOS
+    {
+      return {
+        type:   "FunctionDeclaration",
+        id:     id,
+        params: optionalList(extractOptional(params, 0)),
+        body:   body
+      };
+    }
+
+FormalParameterList
+    = TypeDefinition __ head:Identifier tail:(__ "," TypeDefinition __ Identifier)* {
+        return buildList(head, tail, 3);
+    }
+
+FunctionBody
+    = body:SourceElements? {
+        return {
+            type: "BlockStatement",
+            body: optionalList(body)
+        };
+    }
 
 Program
     = body:SourceElements? {
@@ -129,3 +175,4 @@ SourceElements
 
 SourceElement
   = Statement
+  / FunctionDeclaration
