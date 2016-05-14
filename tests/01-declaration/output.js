@@ -1,5 +1,5 @@
 let str;
-let v;
-let d;
-let f;
-let d;
+let value;
+let number;
+let bool;
+let newDate;

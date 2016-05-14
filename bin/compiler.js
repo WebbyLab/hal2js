@@ -3,7 +3,7 @@
 
 const fs        = require('fs')
 const {docopt}  = require('docopt');
-const compile   = require('../parser/compiler.js');
+const compileer = require('../lib/compiler');
 
 const doc =  `
     Usage:
@@ -21,7 +21,7 @@ const dst  = opts['--dst'];
 
 function main(){
     const source = fs.readFileSync(src, 'utf-8');
-    const ast    = compile(source);
+    const ast    = compileer.compile(source);
 
     if (dst) {
         fs.writeFileSync(dst, JSON.stringify(ast));

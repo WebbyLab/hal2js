@@ -1,5 +1,5 @@
 string 60 str;
-val v;
-longint d;
-boolean f;
-date d;
+val value;
+longint number;
+boolean bool;
+date newDate;
