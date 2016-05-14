@@ -20,6 +20,16 @@
     function optionalList(value) {
         return value !== null ? value : [];
     }
+
+      function buildTree(head, tail, builder) {
+        var result = head, i;
+
+        for (i = 0; i < tail.length; i++) {
+          result = builder(result, tail[i]);
+        }
+
+        return result;
+      }
 }
 
 Start
@@ -138,6 +148,79 @@ VariableDeclaration
         };
     }
 
+LeftHandSideExpression
+  = CallExpression
+
+
+CallExpression
+  = head:(
+      callee: MemberExpression  __ args:Arguments {
+        return { type: "CallExpression", callee: callee, arguments: args };
+      }
+    )
+    tail:(
+        __ args:Arguments {
+          return { type: "CallExpression", arguments: args };
+        }
+      / __ "[" __ property:Expression __ "]" {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: true
+          };
+        }
+      / __ "." __ property:IdentifierName { 
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: false
+          };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
+
+        return element;
+      });
+    }
+
+PrimaryExpression
+  = Identifier
+  / "(" __ expression:Expression __ ")" { return expression; }
+
+MemberExpression
+  = head:(
+        PrimaryExpression 
+    )
+    tail:(
+        __ "[" __ property:Expression __ "]" {
+          return { property: property, computed: true };
+        }
+      / __ "." __ property:IdentifierName {
+          return { property: property, computed: false };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        return {
+          type:     "MemberExpression",
+          object:   result,
+          property: element.property,
+          computed: element.computed
+        };
+      });
+    }
+
+Arguments
+  = "(" __ args:(ArgumentList __)? ")" {
+      return optionalList(extractOptional(args, 0));
+    }
+ArgumentList
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return buildList(head, tail, 3);
+    }
+
 ExpressionStatement
   =expression:Expression EOS {
       return {
@@ -154,7 +237,7 @@ Expression
     }
 
 AssignmentExpression
-  = left:LeftHandSideExpression __
+  = left:LeftHandSideExpression  __
     "=" !"=" __
     right:AssignmentExpression
     {
