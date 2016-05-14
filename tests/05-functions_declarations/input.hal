@@ -1,0 +1,5 @@
+function integer MyFunction(integer number)
+begin
+  MyFunction = number;
+  return;
+end;

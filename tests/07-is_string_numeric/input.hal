@@ -1,0 +1,16 @@
+function boolean IsStringNumeric(string s)
+begin
+  integer i;
+  boolean res;
+
+  res = true;
+  for (i=0;i<len(s);i=i+1) begin
+    if (IsDigit(mid(s,i,1))==false) then begin
+      res = false;
+      i = len(s)+1;
+    end;
+  end;
+
+  IsStringNumeric = res;
+  return;
+end;

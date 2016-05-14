@@ -1,0 +1,5 @@
+string 60 str;
+val v;
+longint d;
+boolean f;
+date d;
