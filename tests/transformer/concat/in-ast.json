@@ -1,0 +1,33 @@
+{
+    "type": "File",
+    "program": {
+        "type": "Program",
+        "sourceType": "script",
+        "body": [
+            {
+                "type": "ExpressionStatement",
+                "expression": {
+                    "type": "BinaryExpression",
+                    "left": {
+                        "type": "NumericLiteral",
+                        "extra": {
+                            "rawValue": 2,
+                            "raw": "2"
+                        },
+                        "value": 2
+                    },
+                    "operator": "&",
+                    "right": {
+                        "type": "NumericLiteral",
+                        "extra": {
+                            "rawValue": 2,
+                            "raw": "2"
+                        },
+                        "value": 2
+                    }
+                }
+            }
+        ],
+        "directives": []
+    }
+}
