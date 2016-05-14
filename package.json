@@ -1,0 +1,25 @@
+{
+  "name": "hal2js",
+  "version": "0.0.1",
+  "description": "Hansa Application Language to JavaScript compiler",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.webbylab.com:webbylab/hal2js.git"
+  },
+  "keywords": [
+    "hal",
+    "js",
+    "compiler",
+    "babel",
+    "ast"
+  ],
+  "author": "Webbylab",
+  "license": "MIT"
+}
