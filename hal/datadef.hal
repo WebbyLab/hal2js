@@ -1,0 +1,535 @@
+SourceFile("halcust\\halpatch",0);
+
+begin
+BlockBegin(ExportStockCSVBlock,-,"" )
+  //BlockInServer;
+  //BlockForAllCompanies;
+  RecordField(FileName,M4Str,100,0);
+  RecordField(DirName,M4Str,100,0);
+  RecordField(PLCode,M4Str,60,0);
+  RecordField(Location,M4Str,60,0);
+  RecordField(Qty,M4Val,0,0);
+  RecordField(HostIP,M4Str,60,0);
+  RecordField(Port,M4Int,0,0);
+  RecordField(Login,M4Str,60,0);
+  RecordField(Password,M4Str,60,0);
+
+EndBlock;
+
+
+ RecordBegin(NPCounterpartyVc,-,"");				//Edit----------------------Dima  09.04.2015
+  RecordField(LastName,M4Str,80,0);
+  RecordField(CityRef,M4Str,100,0);  
+  RecordField(FirstName,M4Str,80,0);
+  RecordField(MiddleName,M4Str,80,0);
+  RecordField(Description,M4Str,200,0);
+  RecordField(Ref,M4Str,50,0);
+  RecordField(Phone,M4Str,20,0);
+  RecordField(Email,M4Str,50,0);
+  RecordField(CounterpartyType,M4Str,40,0);
+  RecordField(CounterpartyProperty,M4Str,40,0);
+  RecordField(synchFlag,M4Int,0,0);  
+  RecordField(EDRPOU,M4Str,20,0);
+  RecordField(Counterparty,M4Str,50,0);
+  RecordField(OwnershipForm,M4Str,100,0);
+  RecordField(OwnershipFormDescription,M4Str,200,0);  
+  RecordField(Math,M4Matrix,0,0);
+  RecordField(StreetRef,M4Str,100,0);
+  RecordField(Buildingnumber,M4Str,10,0);
+  RecordField(Flat,M4Str,10,0);   
+  RecordField(CityDescription,M4Str,100,0);  
+  ArrayBegin(Math,-,1);
+  ArrayField(FirstName,M4Str,80,0);
+  ArrayField(LastName,M4Str,80,0);
+  ArrayField(MiddleName,M4Str,80,0);
+	ArrayField(Phones,M4Str,20,0);
+  ArrayField(Email,M4Str,50,0);
+  ArrayField(Ref,M4Str,100,0);
+  ArrayField(Owner,M4Str,100,0);
+  ArrayField(Description,M4Str,200,0); 
+  EndArray;
+  MainKeyBegin(LastName,0);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(synchFlag);
+  KeySegment(synchFlag);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(CounterpartyProperty);
+  KeySegment(CounterpartyProperty);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(CounterpartyType);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(Phone);
+  KeySegment(Phone);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(CityRef);
+  KeyBegin(CityRef);
+  KeySegment(CityRef);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(LastName); 
+  KeyBegin(FirstName);
+  KeySegment(FirstName);
+  KeySegment(LastName); 
+	KeySegment(MiddleName);
+	KeySegment(CityRef); 
+	KeySegment(Ref);  
+  KeyBegin(Description);
+  KeySegment(Description);
+	KeySegment(CityDescription); 
+	KeySegment(Phone);
+EndRecord; 
+
+	
+  
+  RecordBegin(NPCounterpartySenderVc,-,"");						// RybRay
+  RecordField(LastName,M4Str,80,0);
+  RecordField(CityRef,M4Str,100,0);  
+  RecordField(FirstName,M4Str,80,0);
+  RecordField(MiddleName,M4Str,80,0);
+  RecordField(Description,M4Str,200,0);
+  RecordField(Ref,M4Str,50,0);
+  RecordField(Phone,M4Str,20,0);
+  RecordField(Email,M4Str,50,0);
+  RecordField(CounterpartyType,M4Str,40,0);
+  RecordField(CounterpartyProperty,M4Str,40,0);
+  RecordField(synchFlag,M4Int,0,0);  
+  RecordField(EDRPOU,M4Str,20,0);
+  RecordField(Counterparty,M4Str,50,0);
+  RecordField(OwnershipForm,M4Str,100,0);
+  RecordField(OwnershipFormDescription,M4Str,200,0);  
+  RecordField(Math,M4Matrix,0,0);
+  RecordField(StreetRef,M4Str,100,0);
+  RecordField(Buildingnumber,M4Str,10,0);
+  RecordField(Flat,M4Str,10,0);   
+  RecordField(CityDescription,M4Str,100,0);  
+  ArrayBegin(Math,-,1);
+  ArrayField(FirstName,M4Str,80,0);
+  ArrayField(LastName,M4Str,80,0);
+  ArrayField(MiddleName,M4Str,80,0);  
+	ArrayField(Phones,M4Str,20,0);
+  ArrayField(Email,M4Str,50,0);
+  ArrayField(Ref,M4Str,100,0);
+  ArrayField(Owner,M4Str,100,0);
+  ArrayField(Description,M4Str,200,0);
+  EndArray;
+  MainKeyBegin(LastName,0);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(synchFlag);
+  KeySegment(synchFlag);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(CounterpartyProperty);
+  KeySegment(CounterpartyProperty);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(CounterpartyType);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeySegment(CityRef);
+  KeyBegin(Phone);
+  KeySegment(Phone);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(CityRef);
+  KeyBegin(CityRef);
+  KeySegment(CityRef);
+  KeySegment(LastName);
+  KeySegment(FirstName);
+  KeySegment(Phone);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(LastName);
+  KeyBegin(FirstName);
+  KeySegment(FirstName);
+  KeySegment(LastName); 
+	KeySegment(MiddleName);
+	KeySegment(CityRef); 
+	KeySegment(Ref);  
+  KeyBegin(Description);
+  KeySegment(Description);
+	KeySegment(CityDescription); 
+	KeySegment(Phone);
+	KeySegment(Ref); 	
+  EndRecord;
+  
+  
+  RecordBegin(NPAddressesVc,-,"");				//Edit----------------------Dima  10.04.2015
+  RecordField(CounterpartyRef,M4Str,100,0);
+  RecordField(AddressDescription,M4Str,255,0);
+  RecordField(AddressRef,M4Str,100,0);
+  RecordField(CounterpartyDescription,M4Str,200,0);
+  MainKeyBegin(CounterpartyRef,0);
+  KeySegment(CounterpartyRef);
+  KeySegment(AddressDescription);
+  KeyBegin(AddressDescription);
+  KeySegment(AddressDescription);   
+  KeySegment(CounterpartyRef);
+  KeyBegin(CounterpartyDescription);
+  KeySegment(CounterpartyDescription);   
+  KeySegment(AddressDescription);
+  KeySegment(CounterpartyRef);
+  KeyBegin(AddressRef);
+  KeySegment(AddressRef);   
+  KeySegment(CounterpartyRef);
+  EndRecord;      
+    
+  
+ 
+  RecordBegin(NPCounterpartyTypesVc,-,"");	//getTypesOfCounterparties()
+  RecordField(Ref,M4Str,30,0);				//PrivatePerson/Organization
+  RecordField(Description,M4Str,100,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);  
+  EndRecord;  
+  
+  
+  RecordBegin(NPTypesOfPayersVc,-,"");		//getTypesOfPayers()
+  RecordField(Ref,M4Str,30,0);				//Sender/Recipient
+  RecordField(Description,M4Str,100,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  EndRecord;
+  
+  RecordBegin(NPTypesOfPayersRedeliveryVc,-,"");		//getTypesOfPayersForRedelivery()
+  RecordField(Ref,M4Str,30,0);				
+  RecordField(Description,M4Str,100,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  EndRecord;
+  
+  RecordBegin(NPPaymentFormsVc,-,"");		//getPaymentForms()
+  RecordField(Ref,M4Str,30,0);				
+  RecordField(Description,M4Str,100,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  EndRecord;
+  
+  RecordBegin(NPServiceTypesVc,-,"");		//getServiceTypes()
+  RecordField(Ref,M4Str,30,0);				
+  RecordField(Description,M4Str,100,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  EndRecord;
+  
+  RecordBegin(NPTimeIntervalsVc,-,"");		//getTimeIntervals()
+  RecordField(Number,M4Str,50,0);				
+  RecordField(Start,M4Str,10,0);
+  RecordField(End,M4Str,10,0);
+  MainKeyBegin(Number,0);
+  KeySegment(Number);
+  KeySegment(Start);
+  KeySegment(End);
+  KeyBegin(Start);
+  KeySegment(Start);
+  KeySegment(End);  
+  KeySegment(Number);
+  KeyBegin(End);
+  KeySegment(End);
+  KeySegment(Number);  
+  EndRecord;
+  
+  
+  RecordBegin(NPTraysListVc,-,"");		//getTraysList()
+  RecordField(Ref,M4Str,100,0);				
+  RecordField(Description,M4Str,200,0);
+  RecordField(DescriptionRU,M4Str,200,0);
+  RecordField(Weight,M4Str,15,0);
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Weight);
+  KeySegment(Weight);
+  KeySegment(Description);
+  KeyBegin(DescriptionRU);
+  KeySegment(DescriptionRU);
+  KeySegment(Description);    
+  EndRecord;  
+  
+  
+  
+  RecordBegin(NPWarehouseVc,-,"");
+		RecordField(CityRef,M4Str,100,NPCityVc);
+		RecordField(Ref,M4Str,100,0);
+		RecordField(Description,M4Str,255,0);
+		RecordField(DescriptionRu,M4Str,255,0);
+		RecordField(TypeOfWarehouse,M4Str,100,0);
+		RecordField(Number,M4Int,0,0);
+		RecordField(Longitude,M4Str,50,0);
+		RecordField(Latitude,M4Str,50,0); 
+		RecordField(synchFlag,M4Int,0,0);
+	  RecordField(City,M4Str,255,0);
+
+  MainKeyBegin(CityRef,0);
+		KeySegment(CityRef);
+		KeySegment(Number);
+	KeyBegin(Number);
+		KeySegment(Number);
+		KeySegment(CityRef);
+	KeyBegin(Description);
+		KeySegment(Description);
+		KeySegment(CityRef);
+		KeySegment(Number);
+	KeyBegin(DescriptionRu);
+		KeySegment(DescriptionRu);
+		KeySegment(CityRef);
+		KeySegment(Number);
+	KeyBegin(synchFlag);
+		KeySegment(synchFlag);
+		KeySegment(CityRef);
+		KeySegment(Number);
+	KeyBegin(City);
+		KeySegment(City);
+		KeySegment(Number);
+		KeySegment(CityRef);	
+	KeyBegin(DescriptionCity);
+		KeySegment(Description);
+		KeySegment(City);
+		KeySegment(Ref);
+  SubsetKeyBegin2(WarehouseInCity);
+  	StoreInBaseKey;
+  	AppendFieldToKeyName(City);
+  	KeySegment(Number);
+		KeySegment(CityRef);
+  EndRecord;  
+  
+  RecordBegin(NPCityVc,-,"");
+  RecordField(City,M4Str,255,0);
+  RecordField(CityRU,M4Str,255,0);
+  RecordField(Ref,M4Str,100,0);
+  RecordField(Delivery1,M4Int,0,0);
+  RecordField(Delivery2,M4Int,0,0);
+  RecordField(Delivery3,M4Int,0,0);
+  RecordField(Delivery4,M4Int,0,0);
+  RecordField(Delivery5,M4Int,0,0);
+  RecordField(Delivery6,M4Int,0,0);
+  RecordField(Delivery7,M4Int,0,0);
+  RecordField(NPArea,M4Str,100,0);
+  RecordField(synchFlag,M4Int,0,0); 
+  MainKeyBegin(City,0);
+  KeySegment(City);
+  KeyBegin(CityRU);
+  KeySegment(CityRU);
+  KeySegment(City);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(City);
+  KeyBegin(synchFlag);
+  KeySegment(synchFlag);
+  KeySegment(City);
+  EndRecord;
+  
+      	  	
+  RecordBegin(NPDescripVc,-,"");
+  RecordField(Description,M4Str,100,0);
+  RecordField(DescriptionRU,M4Str,100,0);
+  RecordField(Ref,M4Str,100,0);
+  RecordField(synchFlag,M4Int,0,0); 
+  MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(DescriptionRU);
+  KeySegment(DescriptionRU);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  KeyBegin(synchFlag);
+  KeySegment(synchFlag);
+  KeySegment(Description);
+  EndRecord; 
+     	  	
+      	 
+  RecordBegin(NPCargoTypeVc,-,"");
+  RecordField(Description,M4Str,100,0);
+  RecordField(Ref,M4Str,100,0);
+  //There is no synchFlag field becouse the record (count of records) is too small.
+    MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);	
+  EndRecord;
+  
+  RecordBegin(NPBackDelivCargoTypeVc,-,"");
+  RecordField(Description,M4Str,100,0);
+  RecordField(Ref,M4Str,100,0);
+  //There is no synchFlag field becouse the record (count of records) is too small.
+    MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);	
+  EndRecord;
+  
+  RecordBegin(NPDocStateVc,-,"");
+  RecordField(StateId,M4Int,0,0);
+  RecordField(StateName,M4Str,100,0);
+  RecordField(GroupId,M4Int,0,0);
+  //There is no synchFlag field becouse the record (count of records) is too small.
+    MainKeyBegin(StateId,0);
+  KeySegment(StateId);
+  KeySegment(StateName);  
+  KeyBegin(GroupId);
+  KeySegment(GroupId);
+  KeySegment(StateId);	
+  KeyBegin(StateName);
+  KeySegment(StateName);	
+  KeySegment(StateId);	
+  
+  EndRecord;
+  
+  RecordBegin(NPOwnershipFormVc,-,"");
+  RecordField(Ref,M4Str,100,0);
+  RecordField(Description,M4Str,100,0);
+  RecordField(FullName,M4Str,250,0);
+  //There is no synchFlag field becouse the record (count of records) is too small.
+    MainKeyBegin(Description,0);
+  KeySegment(Description);
+  KeyBegin(Ref);
+  KeySegment(Ref);
+  KeySegment(Description);
+  KeyBegin(FullName);
+  KeySegment(FullName);
+  KeySegment(Description);
+  EndRecord;   
+  
+  
+  RecordBegin(StandBoxesVc,-,""); //Edit***************************Sasha2,14:40 16.04.2015 {
+  RecordField(Code,M4Code,20,0);
+  RecordField(Name,M4Str,100,0);
+  RecordField(Length,M4UVal,0,0);
+  RecordField(Width,M4UVal,0,0);
+  RecordField(Height,M4UVal,0,0);
+  RecordField(Volume,M45Val,0,0);
+  RecordField(Weight,M45Val,0,0);
+  MainKeyBegin(Code,0);
+  KeySegment(Code);
+  EndRecord; //Edit***************************Sasha2,14:40 16.04.2015 }
+  
+  RecordBegin(PackListVc,-,""); //Edit***************************Sasha2,14:40 16.04.2015 {
+  RecordField(SerNr,M4Long,0,0);
+  RecordField(Comment,M4Str,200,0);
+  RecordField(TotVolume,M45Val,0,0);
+  RecordField(TotWeight,M45Val,0,0);
+  RecordField(Math,M4Matrix,0,0);
+  RecordField(MotherWin,M4Int,0,0);
+  ArrayBegin(Math,-,1);
+  ArrayField(Code,M4Code,20,0);
+  ArrayField(Name,M4Str,100,0);
+  ArrayField(Length,M4UVal,0,0);
+  ArrayField(Width,M4UVal,0,0);
+  ArrayField(Height,M4UVal,0,0);
+  ArrayField(Volume,M45Val,0,0);
+  ArrayField(Weight,M45Val,0,0);
+  EndArray;
+  MainKeyBegin(SerNr,0);
+  KeySegment(SerNr);
+  EndRecord; //Edit***************************Sasha2,14:40 16.04.2015 }
+  
+  
+  
+	BlockBegin(NPSettingsBlock,-,"");		//Edit----------------------Dima  10.06.2015
+	RecordField(DefSenderDescription,M4Str,200,0);
+	RecordField(DefSenderRef,M4Str,100,0);
+	RecordField(DefSenderCityDescription,M4Str,150,0);
+	RecordField(DefSenderCityRef,M4Str,100,0);
+	RecordField(APIkey,M4Str,100,0);
+	RecordField(DefSenderWarehouse,M4Int,0,0);
+	RecordField(DefServiceType,M4Str,100,0);
+	RecordField(DefPayer,M4Str,100,0);
+	RecordField(DefCargoType,M4Str,100,0);
+	RecordField(DefRedeliveryPayer,M4Str,100,0);
+	RecordField(DefRedeliveryCargoType,M4Str,100,0);
+	RecordField(DefPaymentForm,M4Str,100,0);
+	RecordField(DefCargoDescription,M4Str,200,0);
+	EndBlock; 
+	
+	//should be removed
+	BlockBegin(FiscalSettingsBlock,-,"");		//Edit----------------------Dima  10.06.2015
+	RecordField(StoragePath,M4Str,255,0);
+	RecordField(FileName,M4Str,255,0);
+	EndBlock; 	
+	//----------removed
+	
+	
+	BlockBegin(FiscalSetLocalBlock,-,"");		//Edit----------------------Dima  10.06.2015
+  BlockForAllCompanies;
+	RecordField(StoragePath,M4Str,255,0);
+	RecordField(FileName,M4Str,255,0);
+	EndBlock;
+	
+	BlockBegin(SMSSettingsBlock,-,"");			//Edit----------------------Dima  25.06.2015
+	RecordField(ePochtaKey,M4Str,255,0);
+	RecordField(AdressRequest,M4Str,255,0);
+	RecordField(Login,M4Str,255,0);
+	RecordField(Password,M4Str,255,0);
+	RecordField(WEBLogin,M4Str,255,0);
+	RecordField(WEBPassword,M4Str,255,0);
+	EndBlock; 
+	
+	BlockBegin(SMSTextBlock,-,"");					//Edit----------------------Dima  26.06.2015
+	RecordField(Requisites,M4Str,255,0);
+	RecordField(Title1,M4Str,100,0);
+	RecordField(Title2,M4Str,100,0);
+	RecordField(DefaultCard,M4Str,100,0);
+	RecordField(Title3,M4Str,100,0);
+	RecordField(Text31,M4Str,255,0);
+	RecordField(Text32,M4Str,255,0);
+	RecordField(Text33,M4Str,255,0);
+	RecordField(Title4,M4Str,100,0);
+	RecordField(Text41,M4Str,255,0);
+	RecordField(Text42,M4Str,255,0);
+	RecordField(Title5,M4Str,100,0);
+	RecordField(Text51,M4Str,255,0);
+	RecordField(Commission,M4UVal,0,0);	
+	RecordField(CommissionMin,M4UVal,0,0);			
+	EndBlock; 
+
+
+	BlockBegin(GlobalVariablesBlock,-,"");		//Edit----------------------Dima  10.06.2015
+  BlockForAllCompanies;
+	RecordField(ORFilterKey,M4Int,0,0);
+	EndBlock;
+	 
+
+return;
+end;
+
+

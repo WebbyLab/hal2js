@@ -1,0 +1,1072 @@
+external procedure RateField(real,real,real,string,integer,string,boolean,real,real,string,boolean);
+external function boolean AddBicToMasterWindow(integer,var real,var real,real,real,real,real);
+external function Boolean IsIntEnabActive(var string,var string,var Boolean,var string);
+external function Boolean TouchScreenLookVertical();
+external procedure SysEClass_Tool(Integer,var real,var real);
+external procedure GTransEClass_Tool(Integer,var real,var real);
+external procedure GTrans2EClass_Tool(Integer,var real,var real,var real);
+external procedure GBaseEClass_Tool(Integer,var real,var real);
+external procedure TransGenVClass_Tool(Integer,var real,var real);
+external procedure GetCurUser(var record UserVc);
+external procedure JobRClass_RUS();
+external function string 60 UserDefined(string,string);
+external outer function string 255 MasterBannerURL();
+external procedure ItemStatusUserSettings(string,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean,var Boolean);
+external function Boolean AllowedInCountry(integer);
+external function Integer ResourceWindowResourceType();
+external function Boolean ResPlan_Rental();
+external function Boolean ResPlan_ProdOperations();
+remote function Boolean ReadPOSButtons(string,string,longint,var string,var string,var string,var record POSButtonsVc,var Integer);
+external function Boolean TouchScreenLook();
+external procedure ExtractObj(string,var Integer,var string);
+external function Boolean IsSessionOpen(string,string,Date,Time);
+external procedure CntNPTSPaymentCurrencies(var Array string,var Array string,var Array Integer,var Array string,var Integer);
+remote procedure CntPOSCurrencies(var Array string,var Array Boolean,var Integer);
+external function Boolean CheckOffLineRecords(Boolean);
+external function string 60 TileUserDefined(string,Integer,var Integer);
+external function Boolean CUVATNrColumn;
+external function Integer GetInternetEnablerCountry();
+external function Integer CntVarietyCode(Integer,var Array string);
+external function Boolean UseTaxTemplatesforTaxCalc();
+remote procedure TablesViewWClassDo(record LocalMachineBlock,string,Array string,Array string,Array string,Array string,Array Integer,var Integer,var LongInt);
+external function string 20 GetMenuCode(string);
+external procedure DrawModifierButtons(var Integer);
+remote procedure ForkLiftQueueArray(string,string,var Array string,var Array string,var Array string,var Array string,var Array val,var Array Integer,var Array string,var Integer,Boolean,LongInt,LongInt,string);
+
+external function Boolean DisplayLoginButtons();
+external function Integer LoginShortcutsLines(Integer);
+external function Integer LoginShortcutsPos(Real,Integer);
+
+external procedure DefineTTRRowTypes(Integer);
+external function real ItemButtons(string,Integer);
+external procedure HWStoreWClassAddProducts(Integer);
+external function Boolean HasCharts();
+external function Boolean HasNewRegistration();
+external function Boolean ActivityIsForAcceptanceOrFYI(record ActVc,Boolean,Boolean);
+// TravelLog
+external function Integer LoginShortcuts();
+external function Boolean TestConfigurationEnabler(string);
+remote function Integer CustomerSalesPaymentTermType(string);
+// POS Standalone
+external function Boolean DefCustCodeSetup();
+// in-apps
+external function Boolean HasInAppsAvailable();
+external function Integer CountCountries();
+
+// Language functions RUS
+external function Boolean DisplayLoginKeyPad_RUS();
+external function string 255 VATZoneEditFieldLabelRUS(Integer);
+external function real VATZoneButtonsLabelsRUS(real,real,real,real);
+external procedure LoginButtons2_RUS(Real,Real);
+external procedure FORMDEF_RUS();
+external function string 255 DemoMsgWClassTitle_RUS(Boolean,Boolean);
+external procedure TBEClassDef_RUS();
+external function string 255 VATZoneNameRUS();
+external procedure TSERW_RUS();
+external procedure TSERWNT_RUS();
+external procedure TSERWTouch_RUS();
+external procedure TSERWTEST_RUS();
+external procedure INVFORM_RUS(Boolean);
+external procedure DisplayRecordDetails_RUS(LongInt,LongInt,string,date,time,string,string,string,string,string,string,string,string,string,string,string,Integer,string,string,string,val,string,Boolean,string,string);
+external procedure DrawPOSInterface_RUS(string,string,record POSButtonsVc,Integer,string,Integer);
+external procedure DisplayRecordDetailsCustDisplay_RUS(LongInt,LongInt,string,date,time,string,string,string,string,string,string,Integer,string,string,string,val);
+external function string 255 ResDayWClassWindowTitle_RUS();
+external function string 255 ResMonWClassWindowTitle_RUS();
+external function string 255 RTMonWClassWindowTitle_RUS();
+external procedure SetupNightAuditWindowControls_RUS(Boolean);
+external procedure CURClassDefinitionRUS();
+external function real DrawPaymentModesButtons_IV_RUS(real);
+external function real FunctionButtons_RUS(string);
+external procedure CreditCardWindowHeader_RUS(Boolean,Boolean,Real);
+external procedure CreditCardWindowButtons_RUS(string,string,real);
+external procedure CreditCardWindowInvoiceDetail_RUS(Real);
+external procedure CreditCardWindowDeliveryDetail_RUS(Real);
+external function real DrawPaymentModesButtons_RUS();
+external procedure DrawBarMenuTiles_RUS(string);
+external procedure DrawRestPMOtherPay_RUS();
+external procedure DisplayRecordDetailsRA_RUS(LongInt,LongInt,string,date,time,string,string,string,string,string,string,Integer,string,LongInt,Date,string,LongInt,string);
+external procedure DrawModifierButtons2_RUS(var integer,var integer);
+external procedure OKCancel_RUS();
+external procedure DefineElearningURLCacheLClass_RUS();
+external procedure DefineElearningURLCacheDClass_RUS();
+external function real TravelLogDeductions_RUS(real,real);
+external procedure LoginButtons_RUS(Real);
+external procedure FORMDEF2_RUS();
+external procedure FORMDEF3_RUS();
+external procedure ARS2RClass_RUS();
+external procedure ALLVATRClass_RUS();
+
+external function Boolean IsEnterprise();
+external function Boolean StandardHansa();
+external function Boolean HasATOL();
+
+external function Boolean HasApprovals();
+external function Boolean HasCCPayments();
+external function Boolean HasAdvancedAccounting();
+external function Boolean HasAdvancedCRM();
+external function Boolean HasAdvancedPricing();
+external function Boolean HasAdvancedStock();
+external function Boolean HasBar();
+external function Boolean HasBase2();
+external function Boolean HasBranch();
+external function Boolean HasCategories();
+external function Boolean HasCommunicator();
+external function Boolean HasConsignmentStock();
+external function Boolean HasContactClassification();
+external function Boolean HasContactRelations();
+external function Boolean HasConsolidation();
+external function Boolean HasCountryPerCustomer();
+external function Boolean HasCustItem();
+external function Boolean HasCustomerSearchKey();
+external function Boolean HasDefineColumns();
+external function Boolean HasDeliveryAddress();
+external function Boolean HasDepartments();
+external function Boolean HasETaxDocuments();
+external function Boolean HasEInvoicing();
+external function Boolean HasEndorsedChecks();
+external function Boolean HasExtraNLComment();
+external function Boolean HasExtTax();
+external function Boolean HasFavouriteActTypes();
+external function Boolean HasFormEditor();
+external function Boolean HasFreightAdvanced();
+external function Boolean HasHideCostPrice();
+external function Boolean HasHotelInterface();
+external function Boolean HasGuestUserDefined();
+external function Boolean HasJewelleryInterface();
+external function Boolean HasIncomeAndExpenseBook();
+external function Boolean HasIOUChecks();
+external function Boolean HasItemClassification();
+external function Boolean HasItemGroups();
+external function Boolean HasKPIs();
+external function Boolean HasLanguages();
+external function Boolean HasLimitedAccess();
+external function Boolean HasLocalMachines();
+external function Boolean HasMainPartner();
+external function Boolean HasMultiCurrency();
+external function Boolean HasMultiLocations();
+external function Boolean HasLoyaltyCards();
+external function Boolean HasObjects();
+external function Boolean HasOfficialSerNr();
+external function Boolean HasPreferedOfficialSerNr();
+external function Boolean HasNumberSeries();
+external function Boolean HasPersons();
+external function Boolean HasPocketScreen();
+external function Boolean HasPositions();
+external function Boolean HasProjects();
+external function Boolean HasPriceLists();
+external function Boolean HasQualityControl();
+external function Boolean HasReconLevel2();
+external function Boolean HasReminderLevel();
+external function Boolean HasRemoteBackup();
+external function Boolean HasResourceDisplayGroups();
+external function Boolean HasRussianPrepayment();
+external function Boolean HasRoute();
+external function Boolean HasSalesman();
+external function Boolean HasSecondQuantity();
+external function Boolean HasSerialNumbers();
+external function Boolean HasSettlementDiscount();
+external function Boolean HasSimulations();
+external function Boolean hasSimAccruals();
+external function Boolean HasSkypeConnection();
+external function Boolean HasSIPServerConnection();
+external function Boolean HasTaxMatrix();
+external function Boolean HasTestFeatures();
+external function Boolean HasMetroTestFeatures();
+external function Boolean HasTouchScreenDevice();
+external function Boolean HasTouchScreenLook();
+external function Boolean HasTREO();
+external function Boolean HasVarieties();
+external function Boolean HasVATZone();
+external function Boolean HasWithholdingTax();
+external function Boolean HasWithholdingTaxAdvanced();
+
+external function Boolean HasStandardCRM();
+external function Boolean HasStandardOrganizer();
+external function Boolean HasStandardCommunicator();
+
+external function Boolean HasEMail();
+external function Boolean HasExternalEMail();
+
+external function Boolean HasModAT2();
+external function Boolean HasModCheck();
+external function Boolean HasModCL();
+external function Boolean HasModCO();
+external function Boolean HasModCourses();
+external function Boolean HasModCredMan();
+external function Boolean HasModCRM();
+external function Boolean HasModExp();
+external function Boolean HasModHotel();
+external function Boolean HasModHRM();
+external function Boolean HasModIN();
+external function Boolean HasModNL();
+external function Boolean HasModPO();
+external function Boolean HasModPOS();
+external function Boolean HasModPL();
+external function Boolean HasModPP();
+external function Boolean HasModProd();
+external function Boolean HasModQT();
+external function Boolean HasModRent();
+external function Boolean HasModRest();
+external function Boolean HasModRsrt();
+external function Boolean HasModSO();
+external function Boolean HasModSL();
+external function Boolean HasModSVO();
+external function Boolean HasModTS();
+external function Boolean HasModWHM();
+external function Boolean HasModDI();
+
+procedure dummy() //##ii
+begin //##ii
+  SetLangMode(LangRussian,"RUS",0); //##ii
+  return; //##ii
+end; //##ii
+
+
+
+window RequestNPVClass:1 //Edit by Victor 20.03.15
+ wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+ begin
+  real h,v,vs;
+
+  WindowBegin("Запрос на НП",RequestNPVClass,CGMnt,RcType);
+
+		SetWRect(20,80,380,180);
+		StaticText(30,75,"Натисніть запуск",false);
+
+  EndWindow;
+end;
+
+
+
+
+window NPDescripLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Товары",NPDescripLClass,CGmlist,SHView);
+  SpawnClass(NPDescripDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPDescripVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlColKey(140,140,"Описание (Rus)",DescriptionRU,false,DescriptionRU);
+  RlColKey(300,300,"Ref",Ref,false,Ref);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+window NPDescripSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Описание груза",NPDescripLClass,CGslist,-);
+  SpawnClass(NPDescripDClass);
+  SetWRect(20,80,360,280);
+  Sizeable(-1,-1,0,0);
+  UseView(NPDescripVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlColKey(200,200,"Описание (Rus)",DescriptionRU,false,DescriptionRU);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPDescripDClass:2	//**************************** Edit by Victor 02.04.15
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h6,v,vm;
+  WindowBegin("Новая почта - Товар",NPDescripDClass,CGview,-);
+  //Sizeable(-1,-1,0,0);
+  UseView(NPDescripVc);
+  ActiveFieldOnNew("Description");
+  //SetWRect(20,80,250,250);
+  SetWRect(20,100,530,200);
+  CommunicateButton;
+  EditField(75,vm=(v=6),110,"Товар",Normal,Description,false,0);
+  EditField(75,v+=20,110,"Товар (Rus)",Normal,DescriptionRU,false,0);
+  EditField(75,v+=20,190,"Reference",Normal,Ref,false,0);
+
+  EndWindow;
+end;
+
+window NPCargoTypeLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Типы груза",NPCargoTypeLClass,CGmlist,SHView);
+  SpawnClass(NPCargoTypeDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCargoTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlColKey(300,300,"Ref",Ref,false,Ref);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPCargoTypeSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Типы груза",NPCargoTypeLClass,CGslist,-);
+  SpawnClass(NPCargoTypeDClass);
+  SetWRect(20,80,360,150);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCargoTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(10,10,"Описание",Description,false,Description);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPCargoTypeDClass:2
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h6,v,vm;
+  WindowBegin("Новая почта - Тип груза",NPCargoTypeDClass,CGview,-);
+  //Sizeable(-1,-1,0,0);
+  UseView(NPCargoTypeVc);
+  ActiveFieldOnNew("Description");
+  //SetWRect(20,80,250,250);
+  SetWRect(20,100,530,200);
+  CommunicateButton;
+  EditField(75,vm=(v=6),110,"Тип",Normal,Description,false,0);
+  EditField(75,v+=20,190,"Reference",Normal,Ref,false,0);
+
+  EndWindow;
+end;
+
+window NPCityDClass:2	//**************************** Edit by Victor 02.04.15
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h6,v,vm;
+  WindowBegin("Новая почта - Город",NPCityDClass,CGview,-);
+  //Sizeable(-1,-1,0,0);
+  UseView(NPCityVc);
+  ActiveFieldOnNew("City");
+  //SetWRect(20,80,250,250);
+  SetWRect(20,100,530,200);
+  CommunicateButton;
+  EditField(75,vm=(v=6),110,"Город",Normal,City,false,0);
+  EditField(75,v+=20,110,"Город (Rus)",Normal,CityRU,false,0);
+  EditField(75,v+=20,190,"Reference",Normal,Ref,false,0);
+  EditField(75,v+=20,190,"Area",Normal,NPArea,false,0);
+  StaticText(380,v=20,"Дни доставки",true);
+  CheckBox(h6=300,v+=4,0,"Понедельник",Delivery1);
+  CheckBox(h6,v+=16,0,"Вторник",Delivery2);
+  CheckBox(h6,v+=16,0,"Среда",Delivery3);
+  CheckBox(h6,v+=16,0,"Четверг",Delivery4);
+  CheckBox(h6,v+=16,0,"Пятница",Delivery5);
+  CheckBox(h6,v+=16,0,"Суббота",Delivery6);
+  CheckBox(h6,v+=16,0,"Воскресенье",Delivery7);
+
+  EndWindow;
+end;
+
+
+
+window NPCityLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая поч23та - Города",NPCityLClass,CGmlist,SHView);
+  SpawnClass(NPCityDClass);
+  SetWRect(0,0,560,298);
+  Sizeable(0,0,0,0);
+  UseView(NPCityVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Город",City,false,City);
+  RlColKey(120,120,"Город (Rus)",CityRU,false,CityRU);
+  RlColKey(220,220,"Ref",Ref,false,Ref);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPCitySClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Выберите город",NPCitySClass,CGslist,-);
+  SetWRect(240,80,700,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCityVc);
+  SpawnClass(NPCityDClass);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,2,"Місто",City,false,City);
+  RlColKey(-100,-100,"Город",CityRU,false,CityRU);
+  SearchField("Search");
+  EndWindow;
+end;
+
+window NPContactPersonDClass:2
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h6,v,vm;
+  WindowBegin("Новая почта - Контакт",NPContactPersonDClass,CGview,-);
+  //Sizeable(-1,-1,0,0);
+  UseView(NPContactPersonVc);
+  ActiveFieldOnNew("Имя");
+  SetWRect(20,100,530,550);
+  EditField(75,vm=(v=6),110,"SerNr",Normal,SerNr,false,0);
+  EditField(75,v+=20,110,"Фамилия",Normal,LastName,false,0);
+  EditField(230,v,110,"Имя",Normal,FirstName,false,0);
+  EditField(400,v,110,"Отчество",Normal,MiddleName,false,0);
+  EditField(75,v+=20,110,"Телефон",Normal,Phone,false,0);
+  EditField(75,v+=20,110,"E-mail",Normal,Email,false,0);
+  EditField(75,v+=20,250,"Reference",Normal,Ref,false,0);
+
+  EndWindow;
+end;
+
+
+window NPContactPersonLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Контакты",NPContactPersonLClass,CGmlist,SHView);
+  SpawnClass(NPContactPersonDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPContactPersonVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Номер",SerNr,false,SerNr);
+  RlColKey(80,80,"Фамилия",LastName,false,LastName);
+  RlCol(180,180,"Имя",FirstName,false);
+  RlCol(270,270,"Отчество",MiddleName,false);
+  RlCol(370,370,"Reference",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+
+
+
+
+window NPCounterpartyDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h,h2,v,vm;
+  WindowBegin("Новая почта - Контрагент",NPCounterpartyDClass,CGview,-);
+  Sizeable(520,400,0,0);
+  UseView(NPCounterpartyVc);
+  ActiveFieldOnNew("Имя");
+  SetWRect(20,100,530,600);
+  h=75; h2 = 230;
+  EditField(h,v=6,250,"CityRef",Normal,CityRef,false,0);
+  EditField(400,v,250,"Город",Normal,CityDescription,false,0);
+  EditField(h,v+=20,250,"Reference",Normal,Ref,false,0);
+  EditField(h,v+=20,110,"Фамилия",Normal,LastName,false,0);
+  EditField(h2,v,110,"Имя",Normal,FirstName,false,0);
+  EditField(400,v,110,"Отчество",Normal,MiddleName,false,0);
+  EditField(h,v+=20,110,"Телефон",Normal,Phone,false,0);
+  EditField(h2,v,110,"E-mail",Normal,Email,false,0);
+  EditField(h,v+=20,110,"Тип",Normal,CounterpartyType,false,NPCounterpartyTypesSClass);
+  EditField(h2+20,v,110,"Категория",Normal,CounterpartyProperty,false,NPTypesOfPayersSClass);
+  EditField(h,v+=20,110,"Улица",Normal,StreetRef,false,0);
+  EditField(h2,v,50,"Дом",Normal,Buildingnumber,false,0);
+  EditField(400,v,50,"Квартира",Normal,Flat,false,0);
+  MatrixBegin(25,v+=40,-100,-7,-,99);
+  Flip(0);
+  MatCol(1,30,"Фамилия",0,LastName,false,0);
+  MatCol(1,120,"Имя",0,FirstName,false,0);
+  Flip(1);
+  MatCol(1,210,"Отчество",0,MiddleName,false,0);
+  MatCol(1,300,"Телефон",0,Phones,false,0);
+  MatCol(1,400,"E-mail",0,Email,false,0);
+  Flip(2);
+  MatCol(1,210,"Ref",0,Ref,false,0);
+  MatCol(1,400,"Owner",0,Owner,false,0);
+  EndMatrix;
+  VTab(-85,v,-65,v+20,ToolFlip,1,"A");
+  VTab(-85,v+=20,-65,v+20,ToolFlip,2,"B");
+
+  EndWindow;
+end;
+
+
+window NPCounterpartyLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Контрагенты",NPCounterpartyLClass,CGmlist,SHView);
+  SpawnClass(NPCounterpartyDClass);
+  SetWRect(20,80,560,600);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCounterpartyVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Фамилия",LastName,false,LastName);
+  RlCol(80,80,"Имя",FirstName,false);
+  RlColKey(180,180,"Категория",CounterpartyProperty,false,CounterpartyProperty);
+  RlColKey(280,280,"Тип",CounterpartyType,false,CounterpartyType);
+  RlCol(350,350,"Reference",Ref,false);
+  RlColKey(450,450,"CityRef",CityRef,false,CityRef);
+
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+
+
+window NPCounterpartySenderDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h,h2,v,vm;
+  WindowBegin("Новая почта - Контрагент",NPCounterpartySenderDClass,CGview,-);
+  Sizeable(520,400,0,0);
+  UseView(NPCounterpartySenderVc);
+  ActiveFieldOnNew("Имя");
+  SetWRect(20,100,530,600);
+  h=85; h2 = 240;
+  EditField(h,v=6,250,"CityRef",Normal,CityRef,false,0);
+  EditField(400,v,250,"Город",Normal,CityDescription,false,0);
+  EditField(h,v+=20,250,"Reference",Normal,Ref,false,0);
+  EditField(h,v+=20,200,"Наименование",Normal,Description,false,0);
+  EditField(h,v+=20,110,"Телефон",Normal,Phone,false,0);
+  EditField(h2,v,110,"E-mail",Normal,Email,false,0);
+  EditField(h,v+=20,110,"Тип",Normal,CounterpartyType,false,NPCounterpartyTypesSClass);
+  EditField(h2+20,v,110,"Категория",Normal,CounterpartyProperty,false,NPTypesOfPayersSClass);
+  EditField(h,v+=20,110,"Улица",Normal,StreetRef,false,0);
+  EditField(h2,v,50,"Дом",Normal,Buildingnumber,false,0);
+  EditField(400,v,50,"Квартира",Normal,Flat,false,0);
+  MatrixBegin(25,v+=40,-100,-7,-,99);
+  Flip(0);
+  MatCol(1,30,"Фамилия",0,LastName,false,0);
+  MatCol(1,120,"Имя",0,FirstName,false,0);
+  Flip(1);
+  MatCol(1,210,"Отчество",0,MiddleName,false,0);
+  MatCol(1,300,"Телефон",0,Phones,false,0);
+  MatCol(1,400,"E-mail",0,Email,false,0);
+  Flip(2);
+  MatCol(1,210,"Ref",0,Ref,false,0);
+  MatCol(1,400,"Owner",0,Owner,false,0);
+  EndMatrix;
+  VTab(-85,v,-65,v+20,ToolFlip,1,"A");
+  VTab(-85,v+=20,-65,v+20,ToolFlip,2,"B");
+
+  EndWindow;
+end;
+
+
+window NPCounterpartySenderLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Контрагенты-отправители",NPCounterpartySenderLClass,CGmlist,SHView);
+  SpawnClass(NPCounterpartySenderDClass);
+  SetWRect(20,80,560,600);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCounterpartySenderVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Наименование",Description,false,Description);
+  RlColKey(180,180,"Категория",CounterpartyProperty,false,CounterpartyProperty);
+  RlColKey(280,280,"Тип",CounterpartyType,false,CounterpartyType);
+  RlCol(350,350,"Reference",Ref,false);
+  RlColKey(450,450,"CityRef",CityRef,false,CityRef);
+
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+window NPCounterpartySenderSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Контрагенты-отправители",NPCounterpartySenderLClass,CGslist,-);
+  SpawnClass(NPCounterpartySenderDClass);
+  SetWRect(20,80,450,400);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCounterpartySenderVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Reference",Ref,false,Ref);
+  RlColKey(70,70,"Имя(Название)",FirstName,false,FirstName);
+  RlColKey(200,200,"Тип",CounterpartyType,false,CounterpartyType);
+  RlColKey(300,300,"Город",CityDescription,false,CityDescription);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+window NPAddressesLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - адреса контрагентов",NPAddressesLClass,CGmlist,SHView);
+  //SpawnClass();
+  SetWRect(20,80,800,700);
+  Sizeable(-1,-1,0,0);
+  UseView(NPAddressesVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Контрагент",CounterpartyDescription,false,CounterpartyDescription);
+  RlColKey(200,200,"Адрес",AddressDescription,false,AddressDescription);
+  RlColKey(400,400,"CounterpartyRef",CounterpartyRef,false,CounterpartyRef);
+  RlColKey(650,650,"AddressRef",AddressRef,false,AddressRef);
+
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+//------NPCounterpartyTypesVc---------
+
+window NPCounterpartyTypesDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - тип контрагента",NPCounterpartyTypesDClass,CGview,-);
+  UseView(NPCounterpartyTypesVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Тип",Normal,Ref,false,0);
+  EditField(65,50,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+
+
+window NPCounterpartyTypesSClass:2
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real v;
+
+  WindowBegin("Выберите тип",NPCounterpartyTypesSClass,CGslist,-);
+  UseView(NPCounterpartyTypesVc);
+  SetWRect(20,80,360,200);
+  Sizeable(360,200,0,0);
+  SpawnClass(NPCounterpartyTypesDClass);
+	RecordList(4,17,-21,-39);
+	RlColKey(4,4,"Описание",Description,false,Description);
+	RlCol(100,100,"Ссылка",Ref,false);
+	EndWindow;
+end;
+
+window NPCounterpartyTypesLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Типы контрагента",NPCounterpartyTypesLClass,CGmlist,SHView);
+  SpawnClass(NPCounterpartyTypesDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPCounterpartyTypesVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlCol(200,200," Cсылка",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+//------NPTypesOfPayersVc---------
+
+window NPTypesOfPayersDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - вид плательщика",NPTypesOfPayersDClass,CGview,-);
+  UseView(NPTypesOfPayersVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Тип",Normal,Ref,false,0);
+  EditField(65,50,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+window NPTypesOfPayersLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Виды плательщиков",NPTypesOfPayersLClass,CGmlist,SHView);
+  SpawnClass(NPCounterpartyTypesDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPTypesOfPayersVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlCol(200,200,"Ссылка",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+window NPTypesOfPayersSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  real v;
+  WindowBegin("Выберите вид плательщика",NPTypesOfPayersSClass,CGslist,-);
+  UseView(NPTypesOfPayersVc);
+  SpawnClass(NPTypesOfPayersDClass);
+	RecordList(4,17,-21,-39);
+	RlColKey(4,4,"Описание",Description,false,Description);
+	SearchField("Найти");
+	EndWindow;
+end;
+
+
+
+
+//------NPPaymentFormsVc---------
+
+window NPPaymentFormsDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - форма оплаты",NPPaymentFormsDClass,CGview,-);
+  UseView(NPPaymentFormsVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Ссылка",Normal,Ref,false,0);
+  EditField(65,50,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+window NPPaymentFormsLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - формы оплаты",NPPaymentFormsLClass,CGmlist,SHView);
+  SpawnClass(NPPaymentFormsDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPPaymentFormsVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Description",Description,false,Description);
+  RlCol(200,200,"Описание",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+window NPPaymentFormsSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - формы оплаты",NPPaymentFormsLClass,CGslist,-);
+  SpawnClass(NPPaymentFormsDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPPaymentFormsVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+
+//------NPServiceTypesVc---------
+
+window NPServiceTypesDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - технология доставки",NPServiceTypesDClass,CGview,-);
+  UseView(NPServiceTypesVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Тип",Normal,Ref,false,0);
+  EditField(65,50,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+window NPServiceTypesLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - технологии доставки",NPServiceTypesLClass,CGmlist,SHView);
+  SpawnClass(NPServiceTypesDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPServiceTypesVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlCol(200,200,"Ref",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPServiceTypesSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Выберите тип доставки",NPServiceTypesSClass,CGslist,-);
+  SetWRect(240,80,700,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPServiceTypesVc);
+  SpawnClass(NPServiceTypesDClass);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,2,"Тип",Description,false,Description);
+  RlColKey(-100,-100,"Ref",Ref,false,Ref);
+  SearchField("Search");
+  EndWindow;
+end;
+
+
+
+//------NPTimeIntervalsVc---------
+
+window NPTimeIntervalsDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - временные интервалы",NPTimeIntervalsDClass,CGview,-);
+  UseView(NPTimeIntervalsVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Номер",Normal,Number,false,0);
+  EditField(90,50,50,"Начало",Normal,Start,false,0);
+  EditField(90,80,50,"Окончание",Normal,End,false,0);
+  EndWindow;
+end;
+
+window NPTimeIntervalsLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - временные интервалы",NPTimeIntervalsLClass,CGmlist,SHView);
+  SpawnClass(NPTimeIntervalsDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPTimeIntervalsVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Номер",Number,false,Number);
+  RlColKey(200,200,"Начало",Start,false,Start);
+  RlColKey(300,300,"Окончание",End,false,End);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+//------NPTraysListVc---------
+
+window NPTraysListDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - поддон",NPTraysListDClass,CGview,-);
+  UseView(NPTraysListVc);
+  SetWRect(20,100,400,300);
+  EditField(85,20,150,"Описание",Normal,Description,false,0);
+  EditField(85,45,150,"Описание(рус)",Normal,DescriptionRU,false,0);
+  EditField(300,45,50,"Вес",Normal,Weight,false,0);
+  EditField(85,70,250,"Ссылка",Normal,Ref,false,0);
+  EndWindow;
+end;
+
+window NPTraysListLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - список поддонов",NPTraysListLClass,CGmlist,SHView);
+  SpawnClass(NPTraysListDClass);
+  SetWRect(20,80,500,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPTraysListVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+	RlCol(200,200,"Описание(рус.)",DescriptionRU,false);
+  RlCol(400,280,"Вес",Weight,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+
+//------NPTypesOfPayersRedeliveryVc---------
+
+window NPTypesOfPayersRedeliveryDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - плательщик обратной доставки",NPTypesOfPayersRedeliveryDClass,CGview,-);
+  UseView(NPTypesOfPayersRedeliveryVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Ссылка",Normal,Ref,false,0);
+  EditField(65,50,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+window NPTypesOfPayersRedeliveryLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - список плательщиков обратной доставки",NPTypesOfPayersRedeliveryLClass,CGmlist,SHView);
+  SpawnClass(NPTypesOfPayersRedeliveryDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPTypesOfPayersRedeliveryVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlCol(200,200,"Ссылка",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPTypesOfPayersRedeliverySClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - список плательщиков обратной доставки",NPTypesOfPayersRedeliverySClass,CGslist,-);
+  SpawnClass(NPTypesOfPayersRedeliveryDClass);
+  SetWRect(20,80,460,200);
+  Sizeable(-1,-1,0,0);
+  UseView(NPTypesOfPayersRedeliveryVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlCol(200,200,"Ссылка",Ref,false);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+//------NPBackDelivCargoTypeVc---------
+
+window NPBackDelivCargoTypeDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Тип обратной доставки",NPBackDelivCargoTypeDClass,CGview,-);
+  UseView(NPBackDelivCargoTypeVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"Тип",Normal,Ref,false,0);
+  EditField(65,40,110,"Описание",Normal,Description,false,0);
+  EndWindow;
+end;
+
+window NPBackDelivCargoTypeLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Тип обратной доставки",NPBackDelivCargoTypeLClass,CGmlist,SHView);
+  SpawnClass(NPBackDelivCargoTypeDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPBackDelivCargoTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Тип",Description,false,Description);
+  RlColKey(220,220,"Ref",Ref,false,Ref);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+window NPBackDelivCargoTypeSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Тип обратной доставки",NPBackDelivCargoTypeSClass,CGslist,-);
+  SpawnClass(NPBackDelivCargoTypeDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPBackDelivCargoTypeVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Тип",Description,false,Description);
+  RlColKey(220,220,"Ref",Ref,false,Ref);
+  SearchField("Найти");
+  EndWindow;
+end;
+
+
+window NPDocStateDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Тип обратной доставки",NPDocStateDClass,CGview,-);
+  UseView(NPDocStateVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,110,"StateId",Normal,StateId,false,0);
+  EditField(65,40,110,"Name",Normal,StateName,false,0);
+  EditField(65,60,110,"GroupId",Normal,GroupId,false,0);
+  EndWindow;
+end;
+
+window NPDocStateLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Тип обратной доставки",NPDocStateLClass,CGmlist,SHView);
+  SpawnClass(NPDocStateDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPDocStateVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"id",StateId,false,StateId);
+  RlColKey(90,90,"StateName",StateName,false,StateName);
+  RlColKey(350,350,"Group",GroupId,false,GroupId);
+  SearchField("Group");
+  EndWindow;
+end;
+
+window NPOwnershipFormDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Форма собственности",NPOwnershipFormDClass,CGview,-);
+  UseView(NPOwnershipFormVc);
+  SetWRect(20,100,400,200);
+  EditField(65,20,200,"Ref",Normal,Ref,false,0);
+  EditField(65,40,110,"Description",Normal,Description,false,0);
+  EditField(65,60,200,"FullName",Normal,FullName,false,0);
+  EndWindow;
+end;
+
+window NPOwnershipFormLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Формы собственности",NPOwnershipFormLClass,CGmlist,SHView);
+  SpawnClass(NPOwnershipFormDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPOwnershipFormVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Ref",Ref,false,Ref);
+  RlColKey(150,150,"Description",Description,false,Description);
+  RlColKey(220,220,"FullName",FullName,false,FullName);
+  SearchField("Group");
+  EndWindow;
+end;
+
+window NPWarehouseDClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+	real h, v, vm;
+  WindowBegin("Новая почта - Отделение",NPWarehouseDClass,CGview,-);
+  UseView(NPWarehouseVc);
+  SetWRect(20,100,400,200);
+  h = 100;
+  EditField(h,20,20,"Number",Normal,Number,false,0);
+  EditField(h,40,300,"Description",Normal,Description,false,0);
+  EditField(h,60,300,"DescriptionRu",Normal,DescriptionRu,false,0);
+  EditField(h,80,200,"TypeOfWarehouse",Normal,TypeOfWarehouse,false,0);
+  EditField(h,100,200,"City",Normal,City,false,NPCitySClass);
+  EditField(h,120,200,"CityRef",Normal,CityRef,false,NPCitySClass);
+  EditField(h,140,110,"Longitude",Normal,Longitude,false,0);
+  EditField(275,140,110,"Latitude",Normal,Latitude,false,0);
+  EditField(155,20,200,"Ref",Normal,Ref,false,0);
+  EndWindow;
+end;
+
+window NPWarehouseLClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - Отделения",NPWarehouseLClass,CGmlist,SHView);
+  SpawnClass(NPWarehouseDClass);
+  SetWRect(20,80,560,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPWarehouseVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Number",Number,false,Number);
+  RlColKey(70,70,"Город",City,false,City);
+  RlColKey(200,200,"Description",Description,false,Description);
+  RlColKey(400,400,"DescriptionRu",DescriptionRu,false,DescriptionRu);
+  SearchField("Group");
+  EndWindow;
+end;
+
+//Окно фильтрует отделения НП по городам
+window NPWarehouseSClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - выберите отделение",NPWarehouseSClass,CGslist,-);
+  SpawnClass(NPWarehouseDClass);
+  SetWRect(20,80,500,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPWarehouseVc);
+  RecordList(4,17,-21,-39);
+  //RlCol(4,4,"Описание",Description,false);
+  //RlColKey(-200,-200,"Город",City,false,City);
+  RlColKey(4,4,"Номер",Number,false,WarehouseInCity);
+  RlCol(70,70,"Город",City,false);
+  RlCol(-250,-250,"Название",Description,false);
+  SearchField("Поиск");
+  EndWindow;
+end;
+
+//Окно для вывода всех отделений НП
+window NPWarehouse2SClass:1
+  wtag("language","RUS"), wtag("product","*"), wtag("productcode","*"), wtag("device","computer")
+begin
+  WindowBegin("Новая почта - выберите отделение",NPWarehouseSClass,CGslist,-);
+  SpawnClass(NPWarehouseDClass);
+  SetWRect(20,80,500,298);
+  Sizeable(-1,-1,0,0);
+  UseView(NPWarehouseVc);
+  RecordList(4,17,-21,-39);
+  RlColKey(4,4,"Описание",Description,false,Description);
+  RlColKey(-200,-200,"Город",City,false,City);
+  RlColKey(-70,-70,"Номер",Number,false,Number);
+  SearchField("Поиск");
+  EndWindow;
+end;

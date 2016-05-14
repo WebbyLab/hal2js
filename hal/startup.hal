@@ -1,0 +1,34 @@
+event startup
+begin
+
+	SetLangMode(LangRussian,"RUS",0);
+	
+	Module("Новая почта","",730,modNPost);
+	
+	Register("Города","Города",NPCityVc,modNPost);
+	Register("Отделения","Отделения",NPWarehouseVc,modNPost);
+	Register("Стандартные коробки","Стандартные коробки",StandBoxesVc,modNPost);
+ 	
+	Report("Получить статус электронных накладных",ENGetStatusRClass,ENGetStatusRn,0,modNPost);//Edit----------------------Dima  27.05.2015
+	
+	Setting("Пак-листы",PackListLClass,modNPost); //Edit***************************Sasha2,14:51 16.04.2015
+  Setting("Описания грузов",NPDescripLClass,modNPost);	//Edit by Victor 02.04.15
+  Setting("Тип груза",NPCargoTypeLClass,modNPost);	//Edit by Victor 02.04.15
+  Setting("Тип обратной доставки",NPBackDelivCargoTypeLClass,modNPost);	//Edit by Victor 08.04.15
+  Setting("Статусы документов",NPDocStateLClass,modNPost);	//Edit by Victor 08.04.15
+  Setting("Формы собственности",NPOwnershipFormLClass,modNPost);	//Edit by Victor 08.04.15
+	Setting("Виды плательщиков",NPTypesOfPayersLClass,modNPost);
+	Setting("Типы Контрагентов",NPCounterpartyTypesLClass,modNPost);
+	Setting("Формы оплаты",NPPaymentFormsLClass,modNPost);
+	Setting("Поддоны",NPTraysListLClass,modNPost);		
+	Setting("Временные интервалы",NPTimeIntervalsLClass,modNPost);
+	Setting("Технологии доставки",NPServiceTypesLClass,modNPost);
+	Setting("Плательщики обратной доставки",NPTypesOfPayersRedeliveryLClass,modNPost);	
+	Setting("Контрагенты",NPCounterpartyLClass,modNPost);
+	Setting("Контрагенты-отправители",NPCounterpartySenderLClass,modNPost);
+	Setting("Адреса контрагентов",NPAddressesLClass,modNPost);		
+  Setting("Настройки Новой почты",NPSettingsTClass,modNPost); 
+	
+ 	
+	return;
+end;
