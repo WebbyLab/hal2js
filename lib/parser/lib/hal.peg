@@ -1,3 +1,4 @@
+
 Start
     = __ program:Program __ { return program; }
 
@@ -26,8 +27,15 @@ TypeDefinition
 AssignmentOperator
   = "*="
   / "/="
+  / "%="
   / "+="
   / "-="
+  / "<<="
+  / ">>="
+  / ">>>="
+  / "&="
+  / "^="
+  / "|="
 
 SourceCharacter
     = .
@@ -80,7 +88,7 @@ Literal
 StringLiteral "string"
   = '"' chars:DoubleStringCharacter* '"' {
       return { type: "StringLiteral", value: chars.join("") };
-    }
+    } 
 
 DoubleStringCharacter
   = !('"' / "\\" / LineTerminator) SourceCharacter { return text(); }
@@ -93,7 +101,7 @@ LineContinuation
 
 EscapeSequence
   = CharacterEscapeSequence
-  / "0" !DecimalDigit { return "\0"; }
+  / "0" !DecimalDigit { return "\0"; } 
 
 CharacterEscapeSequence
   = SingleEscapeCharacter
@@ -119,7 +127,7 @@ EscapeCharacter
   / "x"
   / "u"
 
-NumericLiteral
+NumericLiteral 
     = literal: DecimalLiteral !(IdentifierStart / DecimalDigit) {
       return literal;
     }
@@ -210,7 +218,7 @@ VariableDeclaration
             id:   id
         };
     }
-
+ 
 CallExpression
   = head:(
       callee: MemberExpression  __ args:Arguments {
@@ -317,120 +325,10 @@ IfStatement
             };
         }
 
-UnaryExpression
-  = PostfixExpression
-  / operator:UnaryOperator __ argument:UnaryExpression {
-      var type = (operator === "++" || operator === "--")
-        ? "UpdateExpression"
-        : "UnaryExpression";
-      return {
-        type:     type,
-        operator: operator,
-        argument: argument,
-        prefix:   true
-      };
-    }
-
-MultiplicativeExpression
-  = head:UnaryExpression
-    tail:(__ MultiplicativeOperator __ UnaryExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-MultiplicativeOperator
-  = $("*" !"=")
-  / $("/" !"=")
-  / $("%" !"=")
-
-AdditiveExpression
-  = head:MultiplicativeExpression
-    tail:(__ AdditiveOperator __ MultiplicativeExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-AdditiveOperator
-  = $("+" ![+=])
-  / $("-" ![-=])
-
-ShiftExpression
-  = head:AdditiveExpression
-    tail:(__ ShiftOperator __ AdditiveExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-ShiftOperator
-  = $("<<"  !"=")
-  / $(">>>" !"=")
-  / $(">>"  !"=")
-
-RelationalExpression
-  = head:ShiftExpression
-    tail:(__ RelationalOperator __ ShiftExpression)*
-    {  return buildBinaryExpression(head, tail); }
-
-RelationalOperator
-  = "<="
-  / ">="
-  / $("<" !"<")
-  / $(">" !">")
-
-RelationalOperatorNoIn
-  = "<="
-  / ">="
-  / $("<" !"<")
-  / $(">" !">")
-
-EqualityExpression
-  = head:RelationalExpression
-    tail:(__ EqualityOperator __ RelationalExpression)*
-    {console.log('EqualityExpression'); return buildBinaryExpression(head, tail); }
-
-EqualityOperator
-  = "==="
-  / "!=="
-  / "=="
-  / "!="
-
-BitwiseANDExpression
-  = head:EqualityExpression
-    tail:(__ BitwiseANDOperator __ EqualityExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-BitwiseANDOperator
-  = $("&" ![&=])
-
-BitwiseXORExpression
-  = head:BitwiseANDExpression
-    tail:(__ BitwiseXOROperator __ BitwiseANDExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-BitwiseXOROperator
-  = $("^" !"=")
-
-BitwiseORExpression
-  = head:BitwiseXORExpression
-    tail:(__ BitwiseOROperator __ BitwiseXORExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-BitwiseOROperator
-  = $("|" ![|=])
-
-LogicalANDExpression
-  = head:BitwiseORExpression
-    tail:(__ LogicalANDOperator __ BitwiseORExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-LogicalANDOperator
-  = "&&"
-
-
-LogicalORExpression
-  = head:LogicalANDExpression
-    tail:(__ LogicalOROperator __ LogicalANDExpression)*
-    { return buildBinaryExpression(head, tail); }
-
-
 AssignmentExpression
   = left:Identifier  __
-    "=" !"="  __
-    right: Literal
+    "=" !"=" __
+    right: Literal 
     {
       return {
         type:     "AssignmentExpression",
@@ -439,18 +337,6 @@ AssignmentExpression
         right:    right
       };
     }
-    / left:Identifier __
-    operator:AssignmentOperator __
-    right:Literal
-    {
-      return {
-        type:     "AssignmentExpression",
-        operator: operator,
-        left:     left,
-        right:    right
-      };
-    }
-    / LogicalORExpression
 
 ReturnStatement
     = ReturnToken EOS {
