@@ -1,19 +1,38 @@
 {
     "type": "File",
     "program": {
-        "type": "Program"
+        "type": "Program",
         "sourceType": "script",
         "body": [
             {
-                "type": "ExpressionStatement",
-                "expression": {
-                    "type": "CallExpression",
-                    "callee": {
-                        "type": "Identifier",
-                        "name": "DateInRange"
-                    },
-                    "arguments": []
-                }
+                "type": "VariableDeclaration",
+                "declarations": [
+                    {
+                        "type": "VariableDeclarator",
+                        "id": {
+                            "type": "Identifier",
+                            "name": "hal"
+                        },
+                        "init": {
+                            "type": "CallExpression",
+                            "callee": {
+                                "type": "Identifier",
+                                "name": "require"
+                            },
+                            "arguments": [
+                                {
+                                    "type": "StringLiteral",
+                                    "extra": {
+                                        "rawValue": "./hal-runtime",
+                                        "raw": "\"./hal-runtime\""
+                                    },
+                                    "value": "./hal-runtime"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "kind": "const"
             }
         ],
         "directives": []
