@@ -32,6 +32,19 @@ TypeDefinition
     / "val"
     / "date"
 
+AssignmentOperator
+  = "*="
+  / "/="
+  / "%="
+  / "+="
+  / "-="
+  / "<<="
+  / ">>="
+  / ">>>="
+  / "&="
+  / "^="
+  / "|="
+
 SourceCharacter
     = .
 
@@ -87,6 +100,7 @@ IdentifierName "identifier"
 
 Statement
   = VariableStatement
+  / ExpressionStatement
 
 VariableStatement
     = TypeDefinition __ declarations:VariableDeclarationList EOS {
@@ -109,6 +123,35 @@ VariableDeclaration
             id:   id
         };
     }
+
+ExpressionStatement
+  =expression:Expression EOS {
+      return {
+        type:       "ExpressionStatement",
+        expression: expression
+      };
+    }
+
+Expression
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return tail.length > 0
+        ? { type: "SequenceExpression", expressions: buildList(head, tail, 3) }
+        : head;
+    }
+
+AssignmentExpression
+  = left:LeftHandSideExpression __
+    "=" !"=" __
+    right:AssignmentExpression
+    {
+      return {
+        type:     "AssignmentExpression",
+        operator: "=",
+        left:     left,
+        right:    right
+      };
+    } 
+
 
 /* ----- Functions and Programs ----- */
 
