@@ -20,6 +20,16 @@
     function optionalList(value) {
         return value !== null ? value : [];
     }
+
+      function buildTree(head, tail, builder) {
+        var result = head, i;
+
+        for (i = 0; i < tail.length; i++) {
+          result = builder(result, tail[i]);
+        }
+
+        return result;
+      }
 }
 
 Start
@@ -113,8 +123,21 @@ IdentifierName "identifier"
 
 Statement
   = VariableStatement
+  / Block
+  / IfStatement
   / ExpressionStatement
   / ReturnStatement
+
+Block
+    = "begin" __ body:(StatementList __)? "end" {
+        return {
+            type: "BlockStatement",
+            body: optionalList(extractOptional(body, 0))
+        };
+    }
+
+StatementList
+    = head:Statement tail:(__ Statement)* { return buildList(head, tail, 1); }
 
 VariableStatement
     = TypeDefinition __ declarations:VariableDeclarationList EOS {
@@ -138,8 +161,81 @@ VariableDeclaration
         };
     }
 
+LeftHandSideExpression
+  = Identifier
+
+
+CallExpression
+  = head:(
+      callee: MemberExpression  __ args:Arguments {
+        return { type: "CallExpression", callee: callee, arguments: args };
+      }
+    )
+    tail:(
+        __ args:Arguments {
+          return { type: "CallExpression", arguments: args };
+        }
+      / __ "[" __ property:Expression __ "]" {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: true
+          };
+        }
+      / __ "." __ property:IdentifierName {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: false
+          };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
+
+        return element;
+      });
+    }
+
+PrimaryExpression
+  = Identifier
+  / "(" __ expression:Expression __ ")" { return expression; }
+
+MemberExpression
+  = head:(
+        PrimaryExpression
+    )
+    tail:(
+        __ "[" __ property:Expression __ "]" {
+          return { property: property, computed: true };
+        }
+      / __ "." __ property:IdentifierName {
+          return { property: property, computed: false };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        return {
+          type:     "MemberExpression",
+          object:   result,
+          property: element.property,
+          computed: element.computed
+        };
+      });
+    }
+
+Arguments
+  = "(" __ args:(ArgumentList __)? ")" {
+      return optionalList(extractOptional(args, 0));
+    }
+ArgumentList
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return buildList(head, tail, 3);
+    }
+
 ExpressionStatement
-  =expression:Expression EOS {
+  = !("{" / FunctionToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
@@ -147,14 +243,36 @@ ExpressionStatement
     }
 
 Expression
-  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
-      return tail.length > 0
-        ? { type: "SequenceExpression", expressions: buildList(head, tail, 3) }
+    = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+        return tail.length > 0
+            ? { type: "SequenceExpression", expressions: buildList(head, tail, 3) }
         : head;
     }
 
+IfStatement
+    = IfToken __ "(" __ test:Expression __ ")" __ "then" __
+        consequent:Statement __
+        ElseToken __
+        alternate:Statement {
+            return {
+                type:       "IfStatement",
+                test:       test,
+                consequent: consequent,
+                alternate:  alternate
+            };
+        }
+    / IfToken __ "(" __ test:Expression __ ")" __
+        consequent:Statement {
+            return {
+                type:       "IfStatement",
+                test:       test,
+                consequent: consequent,
+                alternate:  null
+            };
+        }
+
 AssignmentExpression
-  = left:LeftHandSideExpression __
+  = left:LeftHandSideExpression  __
     "=" !"=" __
     right:AssignmentExpression
     {
@@ -164,7 +282,7 @@ AssignmentExpression
         left:     left,
         right:    right
       };
-    } 
+    }
 
 ReturnStatement
     = ReturnToken EOS {
