@@ -8,7 +8,7 @@ const compile   = require('../parser/compiler.js');
 const doc = [
     '',
     'Usage:',
-    '   compiler.js --src=<src> --dst=<dst>',
+    '   compiler.js --src=<src> [--dst=<dst>]',
     '   compiler.js -h | --help',
     '',
     'Options:',
@@ -25,7 +25,12 @@ const dst  = opts['--dst'];
 function main(){
     const source = fs.readFileSync(src, 'utf-8');
     const ast    = compile(source);
-    return fs.writeFileSync(dst, JSON.stringify(ast));
+
+    if (dst) {
+        fs.writeFileSync(dst, JSON.stringify(ast));
+    } else {
+        console.log(ast);
+    }
 }
 
 main();
