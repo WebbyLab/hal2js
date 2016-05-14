@@ -38,17 +38,6 @@ SourceCharacter
 ReservedWord "reserved word"
     = "ololo"
 
-Identifier
-    = !ReservedWord name:IdentifierName { return name; }
-
-IdentifierName "identifier"
-    = head:IdentifierStart tail:IdentifierPart* {
-        return {
-          type: "Identifier",
-          name: head + tail.join("")
-        };
-      }
-
 IdentifierStart
     = [a-zA-Z]
     / "$"
@@ -81,6 +70,18 @@ __
 
 WhiteSpace
     = " "
+
+
+Identifier
+    = !ReservedWord name:IdentifierName { return name; }
+
+IdentifierName "identifier"
+    = head:IdentifierStart tail:IdentifierPart* {
+        return {
+          type: "Identifier",
+          name: head + tail.join("")
+        };
+      }
 
 /* ----- Statements ----- */
 
