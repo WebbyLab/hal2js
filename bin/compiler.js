@@ -5,19 +5,16 @@ const fs        = require('fs')
 const {docopt}  = require('docopt');
 const compile   = require('../parser/compiler.js');
 
-const doc = [
-    '',
-    'Usage:',
-    '   compiler.js --src=<src> [--dst=<dst>]',
-    '   compiler.js -h | --help',
-    '',
-    'Options:',
-    '   -h --help               Show this screen.',
-    '   -s --src <src>          Source HAL code.',
-    '   -d --dst <dst>          Destination JS code.',
-    ''
-].join('\n');
-
+const doc =  `
+    Usage:
+       compiler.js --src=<src> [--dst=<dst>]
+       compiler.js -h | --help
+    
+    Options:'
+       -h --help               Show this screen.
+       -s --src <src>          Source HAL code.
+       -d --dst <dst>          Destination JS code.`;
+       
 const opts = docopt(doc);
 const src  = opts['--src'];
 const dst  = opts['--dst'];
