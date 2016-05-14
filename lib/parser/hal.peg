@@ -45,6 +45,8 @@ ForToken        = "for"        !IdentifierPart
 FunctionToken   = "function"   !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
+TrueToken       = "true"       !IdentifierPart
+FalseToken      = "false"      !IdentifierPart
 
 TypeDefinition
     = "string" _ [0-9]*
@@ -95,6 +97,9 @@ LineTerminatorSequence "end of line"
     / "\r\n"
     / "\r"
 
+LineTerminator
+  = [\n\r\u2028\u2029]
+
 EOF
     = !.
 
@@ -107,6 +112,92 @@ __
 WhiteSpace
     = " "
 
+Literal
+  = BooleanLiteral
+  / Identifier
+  / NumericLiteral
+  / StringLiteral
+
+StringLiteral "string"
+  = '"' chars:DoubleStringCharacter* '"' {
+      return { type: "StringLiteral", value: chars.join("") };
+    } 
+
+DoubleStringCharacter
+  = !('"' / "\\" / LineTerminator) SourceCharacter { return text(); }
+  / "\\" sequence:EscapeSequence { return sequence; }
+  / LineContinuation
+
+
+LineContinuation
+  = "\\" LineTerminatorSequence { return ""; }
+
+EscapeSequence
+  = CharacterEscapeSequence
+  / "0" !DecimalDigit { return "\0"; } 
+
+CharacterEscapeSequence
+  = SingleEscapeCharacter
+  / NonEscapeCharacter
+
+SingleEscapeCharacter
+  = "'"
+  / '"'
+  / "\\"
+  / "b"  { return "\b";   }
+  / "f"  { return "\f";   }
+  / "n"  { return "\n";   }
+  / "r"  { return "\r";   }
+  / "t"  { return "\t";   }
+  / "v"  { return "\x0B"; }   // IE does not recognize "\v".
+
+NonEscapeCharacter
+  = !(EscapeCharacter / LineTerminator) SourceCharacter { return text(); }
+
+EscapeCharacter
+  = SingleEscapeCharacter
+  / DecimalDigit
+  / "x"
+  / "u"
+
+NumericLiteral 
+    = literal: DecimalLiteral !(IdentifierStart / DecimalDigit) {
+      return literal;
+    }
+
+DecimalLiteral
+  = DecimalIntegerLiteral "." DecimalDigit* ExponentPart? {
+      return { type: "NumericLiteral", value: parseFloat(text()) };
+    }
+  / "." DecimalDigit+ ExponentPart? {
+      return { type: "NumericLiteral", value: parseFloat(text()) };
+    }
+  / DecimalIntegerLiteral ExponentPart? {
+      return { type: "NumericLiteral", value: parseFloat(text()) };
+    }
+
+DecimalIntegerLiteral
+  = "0"
+  / NonZeroDigit DecimalDigit*
+
+DecimalDigit
+  = [0-9]
+
+NonZeroDigit
+  = [1-9]
+
+ExponentPart
+  = ExponentIndicator SignedInteger
+
+ExponentIndicator
+  = "e"i
+
+SignedInteger
+  = [+-]? DecimalDigit+
+
+BooleanLiteral
+  = TrueToken  { return { type: "BooleanLiteral", value: true  }; }
+  / FalseToken { return { type: "BooleanLiteral", value: false }; }
 
 Identifier
     = !ReservedWord name:IdentifierName { return name; }
@@ -160,11 +251,7 @@ VariableDeclaration
             id:   id
         };
     }
-
-LeftHandSideExpression
-  = Identifier
-
-
+ 
 CallExpression
   = head:(
       callee: MemberExpression  __ args:Arguments {
@@ -272,9 +359,9 @@ IfStatement
         }
 
 AssignmentExpression
-  = left:LeftHandSideExpression  __
+  = left:Identifier  __
     "=" !"=" __
-    right:AssignmentExpression
+    right: Literal 
     {
       return {
         type:     "AssignmentExpression",
