@@ -1,7 +1,7 @@
 {
     "type": "File",
     "program": {
-        "type": "Program"
+        "type": "Program",
         "sourceType": "script",
         "body": [
             {
