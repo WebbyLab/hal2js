@@ -1,4 +1,4 @@
-// Description: Tranformer appends "hal" namespace to calls of standard HAL functions 
+// Description: Tranformer appends "hal" namespace to calls of standard HAL functions
 // HAL: len(s)
 // JS: hal.len(s).
 
