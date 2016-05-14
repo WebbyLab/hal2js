@@ -63,8 +63,7 @@ EOS
     / _ LineTerminatorSequence
     / __ EOF
 
-_
-    = (WhiteSpace)*
+
 
 LineTerminatorSequence "end of line"
     = "\n"
@@ -74,8 +73,11 @@ LineTerminatorSequence "end of line"
 EOF
     = !.
 
+_
+    = (WhiteSpace)*
+
 __
-    = WhiteSpace*
+    = (WhiteSpace / LineTerminatorSequence)*
 
 WhiteSpace
     = " "
