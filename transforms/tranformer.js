@@ -3,7 +3,8 @@ const ast      = require('./concat.hal.ast.json');
 const traverse = require('babel-traverse').default;
 
 const visitors = [
-    require('./visitors/concat')
+    require('./visitors/concat'),
+    require('./visitors/replaceCallExpression')
 ];
 
 function visitAll(ast, visitors) {
