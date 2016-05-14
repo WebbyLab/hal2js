@@ -1,9 +1,27 @@
 {
+    function extractList(list, index) {
+        var result = new Array(list.length), i;
 
+        for (i = 0; i < list.length; i++) {
+           result[i] = list[i][index];
+        }
+
+        return result;
+    }
+
+    function buildList(head, tail, index) {
+        return [head].concat(extractList(tail, index));
+    }
+
+    function optionalList(value) {
+        return value !== null ? value : [];
+    }
 }
 
-start
-    = VariableStatement
+Start
+    = __ program:Program __ { return program; }
+
+/* ----- Lexical grammar ----- */
 
 TypeDefinition
     = "string"
@@ -14,38 +32,98 @@ TypeDefinition
     / "val"
     / "date"
 
+SourceCharacter
+    = .
+
 ReservedWord "reserved word"
     = "ololo"
 
-VariableStatement
-    = TypeDefinition __ Identifier EOS
-
 Identifier
-  = !ReservedWord name:IdentifierName { return name; }
+    = !ReservedWord name:IdentifierName { return name; }
 
 IdentifierName "identifier"
-  = head:IdentifierStart tail:IdentifierPart* {
-      return {
-        type: "Identifier",
-        name: head + tail.join("")
-      };
-    }
+    = head:IdentifierStart tail:IdentifierPart* {
+        return {
+          type: "Identifier",
+          name: head + tail.join("")
+        };
+      }
 
 IdentifierStart
-  = [a-zA-Z]
-  / "$"
-  / "_"
+    = [a-zA-Z]
+    / "$"
+    / "_"
 
 IdentifierPart
-  = IdentifierStart
-  / [0-9]
+    = IdentifierStart
+    / [0-9]
 
+EOS
+    = __ ";"
+    / _ LineTerminatorSequence
+    / __ EOF
 
-EOS "end of statement"
-    =  __ ";"
+_
+    = (WhiteSpace)*
+
+LineTerminatorSequence "end of line"
+    = "\n"
+    / "\r\n"
+    / "\r"
+
+EOF
+    = !.
 
 __
     = WhiteSpace*
 
 WhiteSpace
     = " "
+
+/* ----- Statements ----- */
+
+Statement
+  = VariableStatement
+
+VariableStatement
+    = TypeDefinition __ declarations:VariableDeclarationList EOS {
+        return {
+            type:         "VariableDeclaration",
+            declarations: declarations,
+            kind: "let"
+        };
+    }
+
+VariableDeclarationList
+    = head:VariableDeclaration tail:(__ "," __ VariableDeclaration)* {
+        return buildList(head, tail, 3);
+    }
+
+VariableDeclaration
+    = id:Identifier {
+        return {
+            type: "VariableDeclarator",
+            id:   id
+        };
+    }
+
+/* ----- Functions and Programs ----- */
+
+Program
+    = body:SourceElements? {
+        return {
+            type: "File",
+            program: {
+                type: "Program",
+                body: optionalList(body)
+            }
+        };
+    }
+
+SourceElements
+    = head:SourceElement tail:(__ SourceElement)* {
+        return buildList(head, tail, 1);
+    }
+
+SourceElement
+  = Statement

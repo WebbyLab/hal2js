@@ -1,18 +1,18 @@
-{  
+{
    "type":"File",
-   "program":{  
+   "program":{
       "type":"Program",
-      "body":[  
-         {  
+      "body":[
+         {
             "type":"VariableDeclaration",
-            "declarations":[  
-               {  
+            "declarations":[
+               {
                   "type":"VariableDeclarator",
-                  "id":{  
+                  "id":{
                      "type":"Identifier",
                      "name":"a"
                   },
-                  "init":{  
+                  "init":{
                      "type":"NumericLiteral",
                      "value":10
                   }
@@ -20,16 +20,16 @@
             ],
             "kind":"let"
          },
-         {  
+         {
             "type":"VariableDeclaration",
-            "declarations":[  
-               {  
+            "declarations":[
+               {
                   "type":"VariableDeclarator",
-                  "id":{  
+                  "id":{
                      "type":"Identifier",
                      "name":"b"
                   },
-                  "init":{  
+                  "init":{
                      "type":"NumericLiteral",
                      "value":5
                   }
@@ -37,23 +37,23 @@
             ],
             "kind":"let"
          },
-         {  
+         {
             "type":"ExpressionStatement",
-            "expression":{  
+            "expression":{
                "type":"AssignmentExpression",
                "operator":"=",
-               "left":{  
+               "left":{
                   "type":"Identifier",
                   "name":"c"
                },
-               "right":{  
+               "right":{
                   "type":"BinaryExpression",
-                  "left":{  
+                  "left":{
                      "type":"Identifier",
                      "name":"a"
                   },
                   "operator":"+",
-                  "right":{  
+                  "right":{
                      "type":"Identifier",
                      "name":"b"
                   }
