@@ -162,7 +162,7 @@ VariableDeclaration
     }
 
 LeftHandSideExpression
-  = CallExpression
+  = Identifier
 
 
 CallExpression
@@ -235,11 +235,11 @@ ArgumentList
     }
 
 ExpressionStatement
-    =   expression:Expression EOS {
-        return {
-            type:       "ExpressionStatement",
-            expression: expression
-        };
+  = !("{" / FunctionToken) expression:Expression EOS {
+      return {
+        type:       "ExpressionStatement",
+        expression: expression
+      };
     }
 
 Expression
