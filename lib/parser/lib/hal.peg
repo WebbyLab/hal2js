@@ -251,6 +251,7 @@ PrimaryExpression
 
  
 
+
 Arguments
   = "(" __ args:(ArgumentList __)? ")" {
       return optionalList(extractOptional(args, 0));
@@ -417,11 +418,20 @@ SourceElement
   = Statement
   / FunctionDeclaration
 
+CallArguments
+  = "(" __ args:(CallArgumentList __)? ")" {
+      return optionalList(extractOptional(args, 0));
+    }
+
+CallArgumentList
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return buildList(head, tail, 3);
+    }
 
 
 CallExpression
   = head:(
-      callee:MemberExpression __ args:Arguments {
+      callee:MemberExpression __ args:CallArguments {
         return { type: "CallExpression", callee: callee, arguments: args };
       }
     )
