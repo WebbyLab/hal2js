@@ -232,8 +232,9 @@ Arguments
   = "(" __ args:(ArgumentList __)? ")" {
       return optionalList(extractOptional(args, 0));
     }
+
 ArgumentList
-  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+  = head: __ AssignmentExpression __ tail:("," __ AssignmentExpression)* {
       return buildList(head, tail, 3);
     }
 
@@ -355,8 +356,15 @@ FunctionDeclaration
       };
     }
 
+Param
+  = TypeDefinition __ id:Identifier {
+      return id;
+    }
+
 FormalParameterList
-    = TypeDefinition __ head:Identifier tail:(__ "," TypeDefinition __ Identifier)* {
+    = TypeDefinition __ head:Identifier tail:(__ "," __ Param)* {
+
+      console.log(head,  tail);
         return buildList(head, tail, 3);
     }
 
@@ -421,17 +429,6 @@ CallExpression
 
         return element;
       });
-    }
-
- 
-Arguments
-  = "(" __ args:(ArgumentList __)? ")" {
-      return optionalList(extractOptional(args, 0));
-    }
-
-ArgumentList
-  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
-      return buildList(head, tail, 3);
     }
 
 UnaryExpression
