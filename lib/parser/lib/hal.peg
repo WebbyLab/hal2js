@@ -1,36 +1,3 @@
-{
-    function extractOptional(optional, index) {
-        return optional ? optional[index] : null;
-    }
-
-    function extractList(list, index) {
-        var result = new Array(list.length), i;
-
-        for (i = 0; i < list.length; i++) {
-           result[i] = list[i][index];
-        }
-
-        return result;
-    }
-
-    function buildList(head, tail, index) {
-        return [head].concat(extractList(tail, index));
-    }
-
-    function optionalList(value) {
-        return value !== null ? value : [];
-    }
-
-      function buildTree(head, tail, builder) {
-        var result = head, i;
-
-        for (i = 0; i < tail.length; i++) {
-          result = builder(result, tail[i]);
-        }
-
-        return result;
-      }
-}
 
 Start
     = __ program:Program __ { return program; }
@@ -42,6 +9,9 @@ Start
 ElseToken       = "else"       !IdentifierPart
 FalseToken      = "false"      !IdentifierPart
 ForToken        = "for"        !IdentifierPart
+
+
+
 FunctionToken   = "function"   !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
@@ -251,66 +221,12 @@ VariableDeclaration
             id:   id
         };
     }
- 
-CallExpression
-  = head:(
-      callee: MemberExpression  __ args:Arguments {
-        return { type: "CallExpression", callee: callee, arguments: args };
-      }
-    )
-    tail:(
-        __ args:Arguments {
-          return { type: "CallExpression", arguments: args };
-        }
-      / __ "[" __ property:Expression __ "]" {
-          return {
-            type:     "MemberExpression",
-            property: property,
-            computed: true
-          };
-        }
-      / __ "." __ property:IdentifierName {
-          return {
-            type:     "MemberExpression",
-            property: property,
-            computed: false
-          };
-        }
-    )*
-    {
-      return buildTree(head, tail, function(result, element) {
-        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
-
-        return element;
-      });
-    }
-
+  
 PrimaryExpression
   = Identifier
   / "(" __ expression:Expression __ ")" { return expression; }
 
-MemberExpression
-  = head:(
-        PrimaryExpression
-    )
-    tail:(
-        __ "[" __ property:Expression __ "]" {
-          return { property: property, computed: true };
-        }
-      / __ "." __ property:IdentifierName {
-          return { property: property, computed: false };
-        }
-    )*
-    {
-      return buildTree(head, tail, function(result, element) {
-        return {
-          type:     "MemberExpression",
-          object:   result,
-          property: element.property,
-          computed: element.computed
-        };
-      });
-    }
+ 
 
 Arguments
   = "(" __ args:(ArgumentList __)? ")" {
@@ -322,7 +238,7 @@ ArgumentList
     }
 
 ExpressionStatement
-  = !("{" / FunctionToken) expression:Expression EOS {
+  = !"return" !("end" / FunctionToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
@@ -358,10 +274,28 @@ IfStatement
             };
         }
 
+MemberExpression
+  = head: Literal
+    {
+      return buildTree(head, [], function(result, element) {
+        return {
+          type:     "MemberExpression",
+          object:   result,
+          property: element.property,
+          computed: element.computed
+        };
+      });
+    }
+
+
+SideExpression
+  = CallExpression
+  /MemberExpression
+
 AssignmentExpression
-  = left:Identifier  __
+  = left:SideExpression  __
     "=" !"=" __
-    right: Literal 
+    right: AssignmentExpression 
     {
       return {
         type:     "AssignmentExpression",
@@ -369,7 +303,20 @@ AssignmentExpression
         left:     left,
         right:    right
       };
+    } 
+    / left:  SideExpression __
+    operator:AssignmentOperator __
+    right:   AssignmentExpression
+    {
+      return {
+        type:     "AssignmentExpression",
+        operator: operator,
+        left:     left,
+        right:    right
+      };
     }
+    /LogicalORExpression
+
 
 ReturnStatement
     = ReturnToken EOS {
@@ -383,6 +330,23 @@ FunctionDeclaration
     "(" __ params:(FormalParameterList __)? ")" __
     "begin" __ body:FunctionBody __ "end" __ EOS
     {
+      body.body.unshift({
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name":  id.name
+            },
+            "init": null
+          }
+        ],
+        "kind": "let"
+      });
+
+      prepareReturn(body.body, id.name);
+
       return {
         type:   "FunctionDeclaration",
         id:     id,
@@ -423,3 +387,167 @@ SourceElements
 SourceElement
   = Statement
   / FunctionDeclaration
+
+
+
+CallExpression
+  = head:(
+      callee:MemberExpression __ args:Arguments {
+        return { type: "CallExpression", callee: callee, arguments: args };
+      }
+    )
+    tail:(
+        __ args:Arguments {
+          return { type: "CallExpression", arguments: args };
+        }
+      / __ "[" __ property:Expression __ "]" {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: true
+          };
+        }
+      / __ "." __ property:IdentifierName {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: false
+          };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
+
+        return element;
+      });
+    }
+
+ 
+Arguments
+  = "(" __ args:(ArgumentList __)? ")" {
+      return optionalList(extractOptional(args, 0));
+    }
+
+ArgumentList
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return buildList(head, tail, 3);
+    }
+
+UnaryExpression
+    = SideExpression
+    / operator:UnaryOperator __ argument:UnaryExpression {
+      var type = (operator === "++" || operator === "--")
+        ? "UpdateExpression"
+        : "UnaryExpression";
+
+      return {
+        type:     type,
+        operator: operator,
+        argument: argument,
+        prefix:   true
+      };
+    }
+
+UnaryOperator
+  = "++"
+  / "--"
+  / $("+" !"=")
+  / $("-" !"=")
+  / "~"
+  / "!"
+
+MultiplicativeExpression
+  = head:UnaryExpression
+    tail:(__ MultiplicativeOperator __ UnaryExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+MultiplicativeOperator
+  = $("*" !"=")
+  / $("/" !"=")
+  / $("%" !"=")
+
+AdditiveExpression
+  = head:MultiplicativeExpression
+    tail:(__ AdditiveOperator __ MultiplicativeExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+AdditiveOperator
+  = $("+" ![+=])
+  / $("-" ![-=])
+
+ShiftExpression
+  = head:AdditiveExpression
+    tail:(__ ShiftOperator __ AdditiveExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+ShiftOperator
+  = $("<<"  !"=")
+  / $(">>>" !"=")
+  / $(">>"  !"=")
+
+RelationalExpression
+  = head:ShiftExpression
+    tail:(__ RelationalOperator __ ShiftExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+RelationalOperator
+  = "<="
+  / ">="
+  / $("<" !"<")
+  / $(">" !">")
+
+
+
+EqualityExpression
+  = head:RelationalExpression
+    tail:(__ EqualityOperator __ RelationalExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+ 
+EqualityOperator
+  = "==="
+  / "!=="
+  / "=="
+  / "!="
+
+BitwiseANDExpression
+  = head:EqualityExpression
+    tail:(__ BitwiseANDOperator __ EqualityExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+BitwiseANDOperator
+  = $("&" ![&=])
+
+BitwiseXORExpression
+  = head:BitwiseANDExpression
+    tail:(__ BitwiseXOROperator __ BitwiseANDExpression)*
+    { return buildBinaryExpression(head, tail); }
+ 
+BitwiseXOROperator
+  = $("^" !"=")
+
+BitwiseORExpression
+  = head:BitwiseXORExpression
+    tail:(__ BitwiseOROperator __ BitwiseXORExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+BitwiseOROperator
+  = $("|" ![|=])
+
+LogicalANDExpression
+  = head:BitwiseORExpression
+    tail:(__ LogicalANDOperator __ BitwiseORExpression)*
+    { return buildBinaryExpression(head, tail); }
+
+LogicalANDOperator
+  = "&&"
+
+LogicalORExpression
+  = head:LogicalANDExpression
+    tail:(__ LogicalOROperator __ LogicalANDExpression)*
+    { return buildBinaryExpression(head, tail); }
+ 
+LogicalOROperator
+  = "||"
+ 

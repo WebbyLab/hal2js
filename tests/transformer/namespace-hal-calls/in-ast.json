@@ -10,7 +10,7 @@
                     "type": "CallExpression",
                     "callee": {
                         "type": "Identifier",
-                        "name": "DateInRange"
+                        "name": "Dateinrange"
                     },
                     "arguments": []
                 }

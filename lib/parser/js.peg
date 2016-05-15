@@ -680,6 +680,7 @@ CallExpression
         }
     )*
     {
+      console.log(head, tail);
       return buildTree(head, tail, function(result, element) {
         element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
 
@@ -1359,6 +1360,5 @@ SourceElement
 
 /* ----- A.8 JSON ----- */
 
-/* Irrelevant. */
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
+/* Irrelevant. */ 
+

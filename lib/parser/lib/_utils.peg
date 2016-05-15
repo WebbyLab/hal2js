@@ -1,0 +1,63 @@
+{
+    function extractOptional(optional, index) {
+        return optional ? optional[index] : null;
+    }
+
+    function extractList(list, index) {
+        var result = new Array(list.length), i;
+
+        for (i = 0; i < list.length; i++) {
+           result[i] = list[i][index];
+        }
+
+        return result;
+    }
+
+    function buildList(head, tail, index) {
+        return [head].concat(extractList(tail, index));
+    }
+
+    function optionalList(value) {
+        return value !== null ? value : [];
+    }
+
+      function buildTree(head, tail, builder) {
+        var result = head, i;
+
+        for (i = 0; i < tail.length; i++) {
+          result = builder(result, tail[i]);
+        }
+
+        return result;
+      }
+
+      function buildBinaryExpression(head, tail) {
+        return buildTree(head, tail, function(result, element) {
+          return {
+            type:     "BinaryExpression",
+            operator: element[1],
+            left:     result,
+            right:    element[3]
+          };
+        });
+      }
+
+
+      function prepareReturn(body, id){
+        var arg = {
+          "type": "Identifier",
+          "name": id
+        }
+
+        for(var i = 0; i < body.length; i++){
+          if (body[i].type === "ReturnStatement"){
+              body[i].argument = arg
+              return;
+          }
+        }
+
+        body.push({ type: "ReturnStatement", argument: arg })
+        return 
+      }
+
+}
