@@ -1,5 +1,5 @@
-function MyFunction(number) {
+function MyFunction(num1, num2) {
     let MyFunction;
-    MyFunction = number;
+    MyFunction = num1 + num2;
     return MyFinction;
 }
