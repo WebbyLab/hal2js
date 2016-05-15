@@ -3,3 +3,4 @@ val value;
 longint number;
 boolean bool;
 date newDate;
+integer a,b,c;
