@@ -9,6 +9,7 @@ Start
 
 ElseToken       = "else"       !IdentifierPart
 FalseToken      = "false"      !IdentifierPart
+WhileToken      = "while"      !IdentifierPart
 ForToken        = "for"        !IdentifierPart
 
 
@@ -196,7 +197,10 @@ Statement
 
  
 IterationStatement
-  = ForToken __
+  = WhileToken __ "(" __ test:Expression __ ")" __
+    body:Statement
+    { return { type: "WhileStatement", test: test, body: body }; }
+  / ForToken __
     "(" __
     init:(Expression __)?  ";" __
     test:(Expression __)?  ";" __
