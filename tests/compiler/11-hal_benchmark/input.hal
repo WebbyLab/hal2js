@@ -60,3 +60,5 @@ begin
 	MessageBox(0, timeStop - timeStart & " " & res);
   return;
 end;
+
+benchmark();

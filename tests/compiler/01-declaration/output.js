@@ -1,6 +1,6 @@
-let str;
+let str='';
 let value;
-let number;
-let bool;
-let newDate;
-let a,b,c;
+let number=0;
+let bool=false;
+let newDate='';
+let a=0,b=0,c=0;

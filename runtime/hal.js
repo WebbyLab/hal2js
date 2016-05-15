@@ -23,7 +23,7 @@ exports.nonblank = function(val) {
     return (!val || val.langth === 0);
 };
 
-exports.getCurTick = function() {
+exports.GetCurTick = function() {
     return Date.now();
 };
 
