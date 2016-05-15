@@ -227,7 +227,7 @@ StatementList
 VariableStatement
     = typeData:TypeDefinition __ declarations:VariableDeclarationList EOS {
         let value = undefined;
-        let type  = typeData.toLowerCase();
+        let type  = typeof typeData === 'object' ? typeData[0].toLowerCase():typeData.toLowerCase();
 
         if ( type == "bolean")    value = false;
         if ( type == "integer" || type == "longint" || type == "val") value = 0;
