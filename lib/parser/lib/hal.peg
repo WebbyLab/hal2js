@@ -337,7 +337,7 @@ FunctionDeclaration
             "type": "VariableDeclarator",
             "id": {
               "type": "Identifier",
-              "name":  id
+              "name":  id.name
             },
             "init": null
           }
@@ -345,7 +345,7 @@ FunctionDeclaration
         "kind": "let"
       });
 
-      prepareReturn(body.body, id);
+      prepareReturn(body.body, id.name);
 
       return {
         type:   "FunctionDeclaration",
