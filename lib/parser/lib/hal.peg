@@ -238,7 +238,7 @@ ArgumentList
     }
 
 ExpressionStatement
-  = !("end" / FunctionToken) expression:Expression EOS {
+  = !"return" !("end" / FunctionToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
@@ -278,7 +278,6 @@ MemberExpression
   = head: Literal
     {
       return buildTree(head, [], function(result, element) {
-        console.log(head)
         return {
           type:     "MemberExpression",
           object:   result,
@@ -331,6 +330,23 @@ FunctionDeclaration
     "(" __ params:(FormalParameterList __)? ")" __
     "begin" __ body:FunctionBody __ "end" __ EOS
     {
+      body.body.unshift({
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name":  id
+            },
+            "init": null
+          }
+        ],
+        "kind": "let"
+      });
+
+      prepareReturn(body.body, id);
+
       return {
         type:   "FunctionDeclaration",
         id:     id,

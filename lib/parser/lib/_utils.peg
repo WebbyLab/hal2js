@@ -42,4 +42,22 @@
         });
       }
 
+
+      function prepareReturn(body, id){
+        var arg = {
+          "type": "Identifier",
+          "name": id
+        }
+
+        for(var i = 0; i < body.length; i++){
+          if (body[i].type === "ReturnStatement"){
+              body[i].argument = arg
+              return;
+          }
+        }
+
+        body.push({ type: "ReturnStatement", argument: arg })
+        return 
+      }
+
 }
