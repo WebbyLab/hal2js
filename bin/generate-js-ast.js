@@ -1,4 +1,5 @@
-'use strict';
+#!/usr/bin/env node
+
 const babel = require('babel-core');
 const babylon = require('babylon');
 const fs = require('fs');
