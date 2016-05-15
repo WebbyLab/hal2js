@@ -402,6 +402,7 @@ Program
     = body:SourceElements? {
         return {
             type: "File",
+            sourceType: "script",
             program: {
                 type: "Program",
                 body: optionalList(body)
