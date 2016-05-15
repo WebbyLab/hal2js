@@ -1,40 +1,622 @@
 {
     "type": "File",
+    "start": 0,
+    "end": 51,
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 1,
+            "column": 51
+        }
+    },
     "program": {
         "type": "Program",
+        "start": 0,
+        "end": 51,
+        "loc": {
+            "start": {
+                "line": 1,
+                "column": 0
+            },
+            "end": {
+                "line": 1,
+                "column": 51
+            }
+        },
         "sourceType": "script",
         "body": [
             {
-                "type": "VariableDeclaration",
-                "declarations": [
-                    {
-                        "type": "VariableDeclarator",
-                        "id": {
-                            "type": "Identifier",
-                            "name": "hal"
-                        },
-                        "init": {
-                            "type": "CallExpression",
-                            "callee": {
-                                "type": "Identifier",
-                                "name": "require"
-                            },
-                            "arguments": [
-                                {
-                                    "type": "StringLiteral",
-                                    "extra": {
-                                        "rawValue": "./hal-runtime",
-                                        "raw": "\"./hal-runtime\""
-                                    },
-                                    "value": "./hal-runtime"
-                                }
-                            ]
-                        }
+                "type": "FunctionDeclaration",
+                "start": 0,
+                "end": 50,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 0
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 50
                     }
-                ],
-                "kind": "const"
+                },
+                "id": {
+                    "type": "Identifier",
+                    "start": 9,
+                    "end": 12,
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 12
+                        }
+                    },
+                    "name": "foo"
+                },
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                    "type": "BlockStatement",
+                    "start": 14,
+                    "end": 50,
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 50
+                        }
+                    },
+                    "body": [
+                        {
+                            "type": "VariableDeclaration",
+                            "start": 16,
+                            "end": 48,
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 48
+                                }
+                            },
+                            "declarations": [
+                                {
+                                    "type": "VariableDeclarator",
+                                    "start": 20,
+                                    "end": 47,
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 20
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 47
+                                        }
+                                    },
+                                    "id": {
+                                        "type": "Identifier",
+                                        "start": 20,
+                                        "end": 24,
+                                        "loc": {
+                                            "start": {
+                                                "line": 1,
+                                                "column": 20
+                                            },
+                                            "end": {
+                                                "line": 1,
+                                                "column": 24
+                                            }
+                                        },
+                                        "name": "json"
+                                    },
+                                    "init": {
+                                        "type": "CallExpression",
+                                        "start": 27,
+                                        "end": 47,
+                                        "loc": {
+                                            "start": {
+                                                "line": 1,
+                                                "column": 27
+                                            },
+                                            "end": {
+                                                "line": 1,
+                                                "column": 47
+                                            }
+                                        },
+                                        "callee": {
+                                            "type": "Identifier",
+                                            "start": 27,
+                                            "end": 34,
+                                            "loc": {
+                                                "start": {
+                                                    "line": 1,
+                                                    "column": 27
+                                                },
+                                                "end": {
+                                                    "line": 1,
+                                                    "column": 34
+                                                }
+                                            },
+                                            "name": "getJSON"
+                                        },
+                                        "arguments": [
+                                            {
+                                                "type": "StringLiteral",
+                                                "start": 35,
+                                                "end": 46,
+                                                "loc": {
+                                                    "start": {
+                                                        "line": 1,
+                                                        "column": 35
+                                                    },
+                                                    "end": {
+                                                        "line": 1,
+                                                        "column": 46
+                                                    }
+                                                },
+                                                "extra": {
+                                                    "rawValue": "file.json",
+                                                    "raw": "\"file.json\""
+                                                },
+                                                "value": "file.json"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "kind": "let"
+                        }
+                    ],
+                    "directives": []
+                }
+            },
+            {
+                "type": "EmptyStatement",
+                "start": 50,
+                "end": 51,
+                "loc": {
+                    "start": {
+                        "line": 1,
+                        "column": 50
+                    },
+                    "end": {
+                        "line": 1,
+                        "column": 51
+                    }
+                }
             }
         ],
         "directives": []
-    }
+    },
+    "comments": [],
+    "tokens": [
+        {
+            "type": {
+                "label": "function",
+                "keyword": "function",
+                "beforeExpr": false,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "value": "function",
+            "start": 0,
+            "end": 8,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 8
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "name",
+                "beforeExpr": false,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "value": "foo",
+            "start": 9,
+            "end": 12,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 9
+                },
+                "end": {
+                    "line": 1,
+                    "column": 12
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "(",
+                "beforeExpr": true,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 12,
+            "end": 13,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 12
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            }
+        },
+        {
+            "type": {
+                "label": ")",
+                "beforeExpr": false,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 13,
+            "end": 14,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 13
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "{",
+                "beforeExpr": true,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 14,
+            "end": 15,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 14
+                },
+                "end": {
+                    "line": 1,
+                    "column": 15
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "let",
+                "keyword": "let",
+                "beforeExpr": false,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "value": "let",
+            "start": 16,
+            "end": 19,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 16
+                },
+                "end": {
+                    "line": 1,
+                    "column": 19
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "name",
+                "beforeExpr": false,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "value": "json",
+            "start": 20,
+            "end": 24,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 20
+                },
+                "end": {
+                    "line": 1,
+                    "column": 24
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "=",
+                "beforeExpr": true,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": true,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "value": "=",
+            "start": 25,
+            "end": 26,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 25
+                },
+                "end": {
+                    "line": 1,
+                    "column": 26
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "name",
+                "beforeExpr": false,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "value": "getJSON",
+            "start": 27,
+            "end": 34,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 27
+                },
+                "end": {
+                    "line": 1,
+                    "column": 34
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "(",
+                "beforeExpr": true,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 34,
+            "end": 35,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 34
+                },
+                "end": {
+                    "line": 1,
+                    "column": 35
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "string",
+                "beforeExpr": false,
+                "startsExpr": true,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "value": "file.json",
+            "start": 35,
+            "end": 46,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 35
+                },
+                "end": {
+                    "line": 1,
+                    "column": 46
+                }
+            }
+        },
+        {
+            "type": {
+                "label": ")",
+                "beforeExpr": false,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 46,
+            "end": 47,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 46
+                },
+                "end": {
+                    "line": 1,
+                    "column": 47
+                }
+            }
+        },
+        {
+            "type": {
+                "label": ";",
+                "beforeExpr": true,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "start": 47,
+            "end": 48,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 47
+                },
+                "end": {
+                    "line": 1,
+                    "column": 48
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "}",
+                "beforeExpr": false,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null
+            },
+            "start": 49,
+            "end": 50,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 49
+                },
+                "end": {
+                    "line": 1,
+                    "column": 50
+                }
+            }
+        },
+        {
+            "type": {
+                "label": ";",
+                "beforeExpr": true,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "start": 50,
+            "end": 51,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 50
+                },
+                "end": {
+                    "line": 1,
+                    "column": 51
+                }
+            }
+        },
+        {
+            "type": {
+                "label": "eof",
+                "beforeExpr": false,
+                "startsExpr": false,
+                "rightAssociative": false,
+                "isLoop": false,
+                "isAssign": false,
+                "prefix": false,
+                "postfix": false,
+                "binop": null,
+                "updateContext": null
+            },
+            "start": 51,
+            "end": 51,
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 51
+                },
+                "end": {
+                    "line": 1,
+                    "column": 51
+                }
+            }
+        }
+    ]
 }

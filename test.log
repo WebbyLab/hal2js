@@ -1,0 +1,16 @@
+[ { type: 'AwaitExpression',
+    start: 33,
+    end: 59,
+    loc: { start: [Object], end: [Object] },
+    argument: 
+     { type: 'CallExpression',
+       start: 39,
+       end: 59,
+       loc: [Object],
+       callee: [Object],
+       arguments: [Object] } } ]
+const hal = require("./hal-runtime");
+
+async function foo() {
+  let json = await getJSON("file.json");
+};
