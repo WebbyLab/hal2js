@@ -1,4 +1,5 @@
 
+
 Start
     = __ program:Program __ { return program; }
 
@@ -12,21 +13,21 @@ ForToken        = "for"        !IdentifierPart
 
 
 
-FunctionToken   = "function"   !IdentifierPart
+FunctionToken   = "global"? __ "function"   !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
 TrueToken       = "true"       !IdentifierPart
 FalseToken      = "false"      !IdentifierPart
 
 TypeDefinition
-    = "string" _ [0-9]*
-    / "array" _ [0-9]*
-    / "integer"
-    / "boolean"
-    / "longint"
-    / "val"
-    / "date"
-
+    = "string"i _ [0-9]*
+    / "array"i _ [0-9]*
+    / "integer"i
+    / "boolean"i
+    / "longint"i
+    / "val"i
+    / "date"i
+    
 AssignmentOperator
   = "*="
   / "/="
@@ -81,6 +82,8 @@ __
 
 WhiteSpace
     = " "
+    / "\t"
+
 
 Literal
   = BooleanLiteral
@@ -185,12 +188,32 @@ IdentifierName "identifier"
 Statement
   = VariableStatement
   / Block
-  / IfStatement
+  / IterationStatement
   / ExpressionStatement
   / ReturnStatement
 
+ 
+IterationStatement
+  = ForToken __
+    "(" __
+    init:(Expression __)?  ";" __
+    test:(Expression __)?  ";" __
+    update:(Expression __)?
+    ")" __
+    body:Statement
+    {
+      return {
+        type:   "ForStatement",
+        init:   extractOptional(init, 0),
+        test:   extractOptional(test, 0),
+        update: extractOptional(update, 0),
+        body:   body
+      };
+    } 
+
+
 Block
-    = "begin" __ body:(StatementList __)? "end" {
+    = "begin" __ body:(StatementList __)? "end;" {
         return {
             type: "BlockStatement",
             body: optionalList(extractOptional(body, 0))
@@ -327,7 +350,7 @@ ReturnStatement
 /* ----- Functions and Programs ----- */
 
 FunctionDeclaration
-  = FunctionToken __ TypeDefinition __ id:Identifier __
+  = FunctionToken __ TypeDefinition? __ id:Identifier __
     "(" __ params:(FormalParameterList __)? ")" __
     "begin" __ body:FunctionBody __ "end" __ EOS
     {
@@ -363,8 +386,6 @@ Param
 
 FormalParameterList
     = TypeDefinition __ head:Identifier tail:(__ "," __ Param)* {
-
-      console.log(head,  tail);
         return buildList(head, tail, 3);
     }
 
