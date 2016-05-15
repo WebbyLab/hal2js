@@ -5,7 +5,8 @@
       longint: 'NumericLiteral',
       val:     'NumericLiteral',
       string:  'StringLiteral',
-      date:    'StringLiteral'
+      date:    'StringLiteral',
+      array:   'ArrayExpression'
     }
 
     function extractOptional(optional, index) {
