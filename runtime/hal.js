@@ -1,8 +1,8 @@
-exports.mid = function(str, startSlice, lengthSlice) {
+exports.Mid = function(str, startSlice, lengthSlice) {
     return str.slice(startSlice, lengthSlice);
 };
 
-exports.len = function(str) {
+exports.Len = function(str) {
     return str.length;
 };
 
@@ -19,7 +19,7 @@ exports.IsNumeric = function(str) {
     return /^\d+$/g.test(str);
 };
 
-exports.nonblank = function(val) {
+exports.NonBlank = function(val) {
     return (!val || val.langth === 0);
 };
 
@@ -27,7 +27,7 @@ exports.GetCurTick = function() {
     return Date.now();
 };
 
-exports.stopalert = function(msg) {
+exports.AtopAlert = function(msg) {
     console.log('stopalert: [%s]', msg);
 };
 
