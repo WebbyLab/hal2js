@@ -1,5 +1,11 @@
-if(a == 3) {
-  /* Code  */
+let x = false;
+
+if (a == 3) {
+  x = true;
+}
+
+if (a == 3) {
+  x = true;
 } else {
-  /* Code  */
+  x = false;
 }

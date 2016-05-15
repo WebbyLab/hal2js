@@ -1,5 +1,5 @@
 exports.Mid = function(str, startSlice, lengthSlice) {
-    return str.slice(startSlice, lengthSlice);
+    return str.substr(startSlice, lengthSlice);
 };
 
 exports.Len = function(str) {
@@ -7,12 +7,7 @@ exports.Len = function(str) {
 };
 
 exports.IsDigit = function(str) {
-    const allowedChars = '0123456789';
-    let isDigit = false;
-    for (i = 0; i < str.length; i++) {
-        if (allowedChars.indexOf(str.charAt(i)) !== -1)  isDigit = true;
-    }
-   return isDigit;
+    return str.match(/^[0-9]+$/) ? true : false;
 };
 
 exports.IsNumeric = function(str) {

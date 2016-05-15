@@ -2,7 +2,7 @@ const hal = require("./runtime/hal");
 
 function MULTIPLY(i, j) {
   let MULTIPLY;
-  let res;
+  let res = 0;
   res = i * j;
   MULTIPLY = res;
   return MULTIPLY;
@@ -10,7 +10,7 @@ function MULTIPLY(i, j) {
 
 function DIVIDE(i, j) {
   let DIVIDE;
-  let res;
+  let res = 0;
   res = i / j;
   DIVIDE = res;
   return DIVIDE;
@@ -18,7 +18,7 @@ function DIVIDE(i, j) {
 
 function ADD(i, j) {
   let ADD;
-  let res;
+  let res = 0;
   res = i + j;
   ADD = res;
   return ADD;
@@ -26,7 +26,7 @@ function ADD(i, j) {
 
 function SUBSTRACT(i, j) {
   let SUBSTRACT;
-  let res;
+  let res = 0;
   res = i - j;
   SUBSTRACT = res;
   return SUBSTRACT;
@@ -34,9 +34,11 @@ function SUBSTRACT(i, j) {
 
 function benchmark() {
   let benchmark;
-  let timeStart, timeStop, result;
-  let i;
-  let res;
+  let timeStart = 0,
+      timeStop = 0,
+      result = 0;
+  let i = 0;
+  let res = 0;
   timeStart = hal.GetCurTick();
 
   for (i = 0; i < 1000001; i = i + 1) {
