@@ -9,11 +9,13 @@ Start
 
 ElseToken       = "else"       !IdentifierPart
 FalseToken      = "false"      !IdentifierPart
+WhileToken      = "while"      !IdentifierPart
 ForToken        = "for"        !IdentifierPart
 
 
 
-FunctionToken   = "global"? __ "function"   !IdentifierPart
+FunctionToken   = "global"? __ "function"  !IdentifierPart
+ProcedureToken   = "global"? __ "procedure"  !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
 TrueToken       = "true"       !IdentifierPart
@@ -90,6 +92,7 @@ Literal
   / Identifier
   / NumericLiteral
   / StringLiteral
+ 
 
 StringLiteral "string"
   = '"' chars:DoubleStringCharacter* '"' {
@@ -195,7 +198,10 @@ Statement
 
  
 IterationStatement
-  = ForToken __
+  = WhileToken __ "(" __ test:Expression __ ")" __
+    body:Statement
+    { return { type: "WhileStatement", test: test, body: body }; }
+  / ForToken __
     "(" __
     init:(Expression __)?  ";" __
     test:(Expression __)?  ";" __
@@ -225,14 +231,14 @@ StatementList
     = head:Statement tail:(__ Statement)* { return buildList(head, tail, 1); }
 
 VariableStatement
-    = typeData:TypeDefinition __ declarations:VariableDeclarationList EOS {
+    = isArray:"array"? __ typeData:TypeDefinition __ declarations:VariableDeclarationList EOS {
         let value = undefined;
         let type  = typeof typeData === 'object' ? typeData[0].toLowerCase():typeData.toLowerCase();
 
         if ( type == "bolean")    value = false;
         if ( type == "integer" || type == "longint" || type == "val") value = 0;
         if ( type == "string"  || type == "date") value = "";
-
+        if (isArray) type = "array";
 
         const result = {
             type:         "VariableDeclaration",
@@ -241,7 +247,10 @@ VariableStatement
         };
 
         if (type) declarations.forEach(variable => {
-          variable.init = {
+          variable.init = isArray ? {
+            type:  LITERALS[type], 
+            elements: []
+          } : {
             type:  LITERALS[type], 
             value: value
           }
@@ -284,12 +293,14 @@ ArgumentList
     }
 
 ExpressionStatement
-  = !"return" !("end" / FunctionToken) expression:Expression EOS {
+  = !"return" !("end" / FunctionToken / ProcedureToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
       };
     }
+
+
 
 Expression
     = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
@@ -321,8 +332,13 @@ IfStatement
  
 MemberExpression
   = head: Literal
+    tail:(
+        __ "[" __ property:Expression __ "]" {
+          return { property: property, computed: true };
+        } 
+    )*
     {
-      return buildTree(head, [], function(result, element) {
+      return buildTree(head, tail, function(result, element) {
         return {
           type:     "MemberExpression",
           object:   result,
@@ -330,7 +346,7 @@ MemberExpression
           computed: element.computed
         };
       });
-    }
+    } 
 
 
 SideExpression
@@ -371,7 +387,7 @@ ReturnStatement
 /* ----- Functions and Programs ----- */
 
 FunctionDeclaration
-  = FunctionToken __ TypeDefinition? __ id:Identifier __
+  = (FunctionToken / ProcedureToken) __ TypeDefinition? __ id:Identifier __
     "(" __ params:(FormalParameterList __)? ")" __
     "begin" __ body:FunctionBody __ "end" __ EOS
     {

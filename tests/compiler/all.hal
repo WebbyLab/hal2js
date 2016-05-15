@@ -5,6 +5,13 @@ boolean bool;
 date newDate;
 integer a,b,c;
 
+array string 40 text;
+
+text[0] = "412a523";
+text[1] = "5152522";
+text[2] = "-123456";
+
+
 a = 3;
 b = 5;
 str = "Hello!";
@@ -36,6 +43,32 @@ end;
 for(a = 0; a < 10; a = a + 1) begin
     
 end;
+
+while(a < 5) begin
+a = a + 1;
+end;
+
+global
+procedure OnApplicationStartup()
+begin
+  array string 40 text;
+  integer i;
+
+  text[0] = "412a523";
+  text[1] = "5152522";
+  text[2] = "-123456";
+  while(nonblank(text[i])) begin
+    if(IsNumeric(text[i])) then begin
+      stopalert(text[i] & " is numeric value!");
+    end else begin
+      stopalert(text[i] & " is not a numeric value!");
+    end;
+    i = i + 1;
+  end;
+
+  return;
+end;
+
 
 function boolean IsStringNumeric(string s)
 begin
