@@ -403,6 +403,7 @@ Program
         return {
             type: "File",
             sourceType: "script",
+            "directives": [],
             program: {
                 type: "Program",
                 body: optionalList(body)
