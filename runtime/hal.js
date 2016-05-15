@@ -14,8 +14,8 @@ exports.IsNumeric = function(str) {
     return /^\d+$/g.test(str);
 };
 
-exports.NonBlank = function(val) {
-    return (!val || val.langth === 0);
+exports.nonblank = function(val) {
+    return !!val;
 };
 
 exports.GetCurTick = function() {
