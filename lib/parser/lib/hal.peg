@@ -1,3 +1,4 @@
+
 Start
     = __ program:Program __ { return program; }
 
@@ -237,7 +238,7 @@ ArgumentList
     }
 
 ExpressionStatement
-  = !("{" / FunctionToken) expression:Expression EOS {
+  = !("end" / FunctionToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
