@@ -225,12 +225,32 @@ StatementList
     = head:Statement tail:(__ Statement)* { return buildList(head, tail, 1); }
 
 VariableStatement
-    = TypeDefinition __ declarations:VariableDeclarationList EOS {
-        return {
+    = typeData:TypeDefinition __ declarations:VariableDeclarationList EOS {
+        let value = undefined;
+        let type  = typeData.toLowerCase();
+
+        if ( type == "bolean")    value = false;
+        if ( type == "integer" || type == "longint" || type == "val") value = 0;
+        if ( type == "string"  || type == "date") value = "";
+
+
+        const result = {
             type:         "VariableDeclaration",
             declarations: declarations,
             kind: "let"
         };
+
+        if (type) declarations.forEach(variable => {
+          variable.init = {
+            type:  LITERALS[type], 
+            value: value
+          }
+        })
+
+        
+         
+
+        return result
     }
 
 VariableDeclarationList

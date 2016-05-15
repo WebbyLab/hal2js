@@ -1,4 +1,13 @@
 {
+    const LITERALS = {
+      boolean: 'BooleanLiteral',
+      integer: 'NumericLiteral',
+      longint: 'NumericLiteral',
+      val:     'NumericLiteral',
+      string:  'StringLiteral',
+      date:    'StringLiteral'
+    }
+
     function extractOptional(optional, index) {
         return optional ? optional[index] : null;
     }
