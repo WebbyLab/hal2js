@@ -27,10 +27,10 @@ exports.GetCurTick = function() {
     return Date.now();
 };
 
-exports.AtopAlert = function(msg) {
+exports.StopAlert = function(msg) {
     console.log('stopalert: [%s]', msg);
 };
 
-exports.MessageBox = function(msg) {
-    console.log('MessageBox: [%s]', msg);
+exports.MessageBox = function(msgcode, msg) {
+    console.log('MessageBox: msgcode=[%s], msg[%s]', msgcode, msg);
 };
