@@ -1,4 +1,3 @@
-
 Start
     = __ program:Program __ { return program; }
 
@@ -9,6 +8,9 @@ Start
 ElseToken       = "else"       !IdentifierPart
 FalseToken      = "false"      !IdentifierPart
 ForToken        = "for"        !IdentifierPart
+
+
+
 FunctionToken   = "function"   !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
@@ -285,8 +287,13 @@ MemberExpression
       });
     }
 
+
+SideExpression
+  = CallExpression
+  /MemberExpression
+
 AssignmentExpression
-  = left:MemberExpression  __
+  = left:SideExpression  __
     "=" !"=" __
     right: AssignmentExpression 
     {
@@ -297,7 +304,7 @@ AssignmentExpression
         right:    right
       };
     } 
-    / left:  MemberExpression __
+    / left:  SideExpression __
     operator:AssignmentOperator __
     right:   AssignmentExpression
     {
@@ -366,13 +373,52 @@ SourceElement
 
 
 
+CallExpression
+  = head:(
+      callee:MemberExpression __ args:Arguments {
+        return { type: "CallExpression", callee: callee, arguments: args };
+      }
+    )
+    tail:(
+        __ args:Arguments {
+          return { type: "CallExpression", arguments: args };
+        }
+      / __ "[" __ property:Expression __ "]" {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: true
+          };
+        }
+      / __ "." __ property:IdentifierName {
+          return {
+            type:     "MemberExpression",
+            property: property,
+            computed: false
+          };
+        }
+    )*
+    {
+      return buildTree(head, tail, function(result, element) {
+        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
 
+        return element;
+      });
+    }
 
  
+Arguments
+  = "(" __ args:(ArgumentList __)? ")" {
+      return optionalList(extractOptional(args, 0));
+    }
 
+ArgumentList
+  = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
+      return buildList(head, tail, 3);
+    }
 
 UnaryExpression
-    = MemberExpression
+    = SideExpression
     / operator:UnaryOperator __ argument:UnaryExpression {
       var type = (operator === "++" || operator === "--")
         ? "UpdateExpression"
