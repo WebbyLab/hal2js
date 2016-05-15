@@ -1,5 +1,10 @@
+boolean x;
 if(a == 3) then begin
-  /* Code */
-end else begin
-  /* Code */
+    x = true;
+end;
+
+if(a == 3) then begin
+    x = true;
+end else begin 
+    x = false;
 end;
