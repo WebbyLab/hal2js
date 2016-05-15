@@ -14,7 +14,8 @@ ForToken        = "for"        !IdentifierPart
 
 
 
-FunctionToken   = "global"? __ "function"   !IdentifierPart
+FunctionToken   = "global"? __ "function"  !IdentifierPart
+ProcedureToken   = "global"? __ "procedure"  !IdentifierPart
 IfToken         = "if"         !IdentifierPart
 ReturnToken     = "return"     !IdentifierPart
 TrueToken       = "true"       !IdentifierPart
@@ -292,12 +293,14 @@ ArgumentList
     }
 
 ExpressionStatement
-  = !"return" !("end" / FunctionToken) expression:Expression EOS {
+  = !"return" !("end" / FunctionToken / ProcedureToken) expression:Expression EOS {
       return {
         type:       "ExpressionStatement",
         expression: expression
       };
     }
+
+
 
 Expression
     = head:AssignmentExpression tail:(__ "," __ AssignmentExpression)* {
@@ -384,7 +387,7 @@ ReturnStatement
 /* ----- Functions and Programs ----- */
 
 FunctionDeclaration
-  = FunctionToken __ TypeDefinition? __ id:Identifier __
+  = (FunctionToken / ProcedureToken) __ TypeDefinition? __ id:Identifier __
     "(" __ params:(FormalParameterList __)? ")" __
     "begin" __ body:FunctionBody __ "end" __ EOS
     {
