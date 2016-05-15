@@ -1,5 +1,5 @@
 function integer MyFunction(integer num1, integer num2)
 begin
-  MyFunction = num1 + num2;
+  MyFunction = 10;
   return;
 end;
