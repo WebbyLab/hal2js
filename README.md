@@ -18,7 +18,7 @@ node bin/compiler.js --src tests/compiler/11-hal_benchmark/input.hal | node
 ### Performance impovements: 2000x 😎
 
 Original source code in HAL:
-```hal
+```pascal
 function val MULTIPLY(val i, val j)
 begin
     val res;
